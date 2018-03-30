@@ -10,41 +10,5 @@
         | logout
 
   .columns
-    .column.is-one-sixth.side-menu
-      aside.menu
-        ul.menu-list
-          li
-            = link-to 'authenticated.index'
-              | Home
-          if model.showSalesDashboard
-            li
-              = link-to 'authenticated.users'
-                | Users
-            li
-              = link-to 'authenticated.pricings'
-                | Pricings
-            li
-              = link-to 'authenticated.files'
-                | Files
-            li
-              = link-to 'authenticated.coupons'
-                | Coupons
-            li
-              = link-to 'authenticated.invoices'
-                | Invoices
-          if model.showSecurityDashboard
-            li
-              = link-to 'authenticated.reports'
-                | Reports
-            li
-              = link-to 'authenticated.scans'
-                | Scans
-            li
-              = link-to 'authenticated.analyses'
-                | Analyses
-            li
-              = link-to 'authenticated.apps'
-                | Apps
-
     .column
-       = outlet
+     = outlet

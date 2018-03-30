@@ -1,0 +1,18 @@
+.columns
+  .column.is-one-quarter.margin-auto
+    = input class="input search-input" placeholder="Search" value=query
+.columns
+  .column.table-container
+    table.users-list-table
+      tr
+        th
+          | File ID
+        th
+          | File Name
+        th
+          | View
+      if hasObjects
+        each sortedObjects as |file|
+          = file-search-overview file=file
+
+= partial "paginate"

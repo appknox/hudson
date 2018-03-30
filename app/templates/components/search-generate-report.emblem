@@ -6,6 +6,6 @@
           | Search & Generate Report
         form.input-form
           p.control
-            = input class="form-control input" id="user-id" placeholder="Search for a user" type="text" value=userId
+            = user-list
           button.is-primary click="searchUser"
             | Search

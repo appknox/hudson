@@ -1,0 +1,16 @@
+.tabs.is-medium.is-boxed
+  ul
+    li class=generateReportClass click="displayGenerateReport"
+      = link-to 'authenticated.security.generatereport'
+        | Generate Report
+    li class=uploadReportClass click="displayUploadReport"
+      = link-to 'authenticated.security.uploadreport'
+        | Upload Report
+    li class=downloadReportClass click="displayDownloadReport"
+      = link-to 'authenticated.security.downloadreport'
+        | Download Report
+    li class=searchClass click="displaySearch"
+      = link-to 'authenticated.security.users'
+        | Search
+
+= outlet

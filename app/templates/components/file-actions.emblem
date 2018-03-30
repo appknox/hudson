@@ -1,0 +1,20 @@
+.file-action-container
+  .columns
+    .column.is-one-sixth
+      button.is-primary
+        | Generate Report
+
+    .column.is-one-sixth
+      button.is-primary
+        | Upload Report
+
+    .column.is-one-sixth
+      button.is-primary
+        | Download Report
+
+  .columns
+    .column
+      h3
+        | List of Analyses
+    .column
+      = create-analysis          

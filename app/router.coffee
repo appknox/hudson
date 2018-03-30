@@ -25,6 +25,16 @@ Router.map ->
     @route 'scans', path: '/scans'
     @route 'analyses', path: '/analyses'
     @route 'apps', path: '/apps'
+    @route 'security', path: '/security', ->
+      @route 'users'
+      @route 'projects', path: '/:username/projects'
+      @route 'files', path: '/:packageName/files'
+      @route 'file', path: '/file/:fileId'
+      @route 'analyses', path: '/:fileId/analyses'
+      @route 'generatereport'
+      @route 'uploadreport'
+      @route 'downloadreport'
+    @route 'projects', path: '/projects'
   @route 'reset'
 
 `export default Router;`

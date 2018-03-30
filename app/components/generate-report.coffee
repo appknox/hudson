@@ -7,7 +7,6 @@ GenerateReportComponent = Ember.Component.extend
     generateReport: ->
       fileId = @$('#file-number').val()
       emailIds = @$('#email-ids').val()
-      debugger
       data =
         file_id: fileId
         email_ids: emailIds
