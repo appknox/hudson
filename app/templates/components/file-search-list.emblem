@@ -11,6 +11,8 @@
           | File Name
         th
           | View
+        th
+          | Action
       if hasObjects
         each sortedObjects as |file|
           = file-search-overview file=file

@@ -1,20 +1,27 @@
-.file-action-container
-  .columns
-    .column.is-one-sixth
-      button.is-primary
-        | Generate Report
+.columns
+  .column.is-half.margin-auto
+    .file-action-container
+      .box
+        h3
+          | Actions
+        .columns
+          .column.has-text-centered
+            button.is-primary
+              | Generate Report
 
-    .column.is-one-sixth
-      button.is-primary
-        | Upload Report
+          .column.has-text-centered
+            button.is-primary
+              | Upload Report
 
-    .column.is-one-sixth
-      button.is-primary
-        | Download Report
+          .column.has-text-centered
+            button.is-primary
+              | Download Report
 
-  .columns
-    .column
-      h3
-        | List of Analyses
-    .column
-      = create-analysis          
+      .box
+        .columns
+          .column
+            h3
+              | List of Analyses
+          .column.content-right
+            = create-analysis
+        = analysis-list

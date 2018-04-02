@@ -1,12 +1,12 @@
 .left-nav
   .columns.top-nav
     .column.logo
-      img src="/images/logo.png"
+      img src="/images/logo-white.png"
     .column.content-right.account-section
       = fa-icon "user"
       h3
         = model.username
-      button.button.is-primary click="invalidateSession"
+      button.button.is-primary.highlighted-button click="invalidateSession"
         | logout
 
   .columns

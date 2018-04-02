@@ -1,0 +1,7 @@
+td
+  | 1
+td
+  = link-to 'authenticated.security.analysis' 1
+    | Cordova Remote Start Page Manipulation Vulnerability
+td
+  | High

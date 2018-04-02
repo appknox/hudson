@@ -30,10 +30,11 @@ Router.map ->
       @route 'projects', path: '/:username/projects'
       @route 'files', path: '/:packageName/files'
       @route 'file', path: '/file/:fileId'
-      @route 'analyses', path: '/:fileId/analyses'
       @route 'generatereport'
       @route 'uploadreport'
       @route 'downloadreport'
+      @route 'purgeanalysis'
+      @route 'analysis', path: '/analysis/:analysisId'
     @route 'projects', path: '/projects'
   @route 'reset'
 

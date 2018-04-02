@@ -1,13 +1,12 @@
 .columns
-  .column
+  .column.is-one-quarter.margin-auto
     .box.margin-top10
-      .margin-auto
-        h3
+      h3
+        | Generate Report
+      form.input-form
+        p.control
+          = input class="form-control input" id="file-number" placeholder="Enter the file number" type="text" value=fileNumber
+        p.control
+          = input class="form-control input" id="email-ids" placeholder="Enter the Email IDs" type="email" value=emailIds
+        button.is-primary click="generateReport"
           | Generate Report
-        form.input-form
-          p.control
-            = input class="form-control input" id="file-number" placeholder="Enter the file number" type="text" value=fileNumber
-          p.control
-            = input class="form-control input" id="email-ids" placeholder="Enter the Email IDs" type="email" value=emailIds
-          button.is-primary click="generateReport"
-            | Generate Report

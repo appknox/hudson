@@ -1,5 +1,5 @@
 .columns
-  .column.is-one-quarter.margin-auto
+  .column.is-one-third.margin-auto
     = input class="input search-input" placeholder="Search" value=query
 .columns
   .column.table-container

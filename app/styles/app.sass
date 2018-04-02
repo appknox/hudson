@@ -1,9 +1,6 @@
 @import "bohemia"
 @import "ember-power-select"
 
-body
-  background-color: lighten(#DCDCDC, 9%)
-
 .margin-auto
   margin-left: auto!important
   margin-right: auto!important
@@ -21,8 +18,10 @@ body
   cursor: pointer
 
 .top-nav
-  background-color: #FFFFFF
+  background-color: #424651
   padding: 0px
+  .logo img
+    width: 20%
 
 .forgot-password
   margin-top: 20px
@@ -42,7 +41,12 @@ button, .button
 .description
   height: 100px
 
+.highlighted-button
+  background-color: #FE4D3F
+  color: #FFF!important
+
 .account-section
+  color: #FFF
   padding-bottom: 0px
   align-items: center
   i
@@ -79,7 +83,7 @@ button, .button
   margin-left: 25%
 
 .table-container
-  .users-list-table
+  .users-list-table, .file-analysis-table
     width: 300px
     margin: auto
     .table-button a
@@ -87,6 +91,12 @@ button, .button
     tr
       td, th
         text-align: center
+  .file-analysis-table
+    width: 800px
+    tr
+      th:first-child
+        width: 20px
+
 
 
 table.users-table, table.dynamic-scan-table
