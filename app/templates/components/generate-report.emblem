@@ -1,5 +1,5 @@
 .columns
-  .column.is-one-quarter.margin-auto
+  .column.is-half.margin-auto
     .box.margin-top10
       h3
         | Generate Report

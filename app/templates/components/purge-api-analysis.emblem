@@ -1,13 +1,12 @@
 .columns
-  .column.is-one-quarter.margin-auto
+  .column.is-half.margin-auto
     .box.margin-top10
-      .margin-auto
-        h3
-          | Purge API Analyses
-        h6
-          | Please enter the id of the file you want to purge off API Analyses
-        form.input-form
-          p.control
-            = input class="form-control input" id="file-number" placeholder="Enter the file ID" type="text" value=fileNumber
-          button.is-primary click="purgeAPIAnalyses"
-            | SUBMIT
+      h3
+        | Purge API Analyses
+      h6
+        | Please enter the id of the file you want to purge off API Analyses
+      form.input-form
+        p.control
+          = input class="form-control input" id="file-number" placeholder="Enter the file ID" type="text" value=fileNumber
+        button.is-primary click="purgeAPIAnalyses"
+          | SUBMIT

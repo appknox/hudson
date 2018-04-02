@@ -24,4 +24,6 @@
               | List of Analyses
           .column.content-right
             = create-analysis
-        = analysis-list
+        .columns
+          .column
+            = analysis-list

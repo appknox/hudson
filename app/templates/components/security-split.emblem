@@ -9,11 +9,12 @@
     li class=downloadReportClass click="displayDownloadReport"
       = link-to 'authenticated.security.downloadreport'
         | Download Report
+    li class=purgeAnalysisClass click="displayPurgeAnalysis"
+      = link-to 'authenticated.security.purgeanalysis'
+        | Purge API Analyses    
     li class=searchClass click="displaySearch"
       = link-to 'authenticated.security.users'
         | Search
-    li class=purgeAnalysisClass click="displayPurgeAnalysis"
-      = link-to 'authenticated.security.purgeanalysis'
-        | Purge API Analyses
+
 
 = outlet

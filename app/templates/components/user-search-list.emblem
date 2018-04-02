@@ -1,16 +1,19 @@
 .columns
-  .column.is-one-third.margin-auto
-    = input class="input search-input" placeholder="Search" value=query
-.columns
-  .column.table-container
-    table.users-list-table
-      tr
-        th
-          | Username
-        th
-          | Projects
-      if hasObjects
-        each sortedObjects as |user|
-          = user-search-overview user=user
+  .column.is-half.margin-auto
+    .box.margin-top10
+      .columns
+        .column.is-half.margin-auto
+          = input class="input search-input" placeholder="Search User" value=query
+      .columns
+        .column.margin-auto
+          table.users-list-table
+            tr
+              th
+                | Username
+              th
+                | Projects
+            if hasObjects
+              each sortedObjects as |user|
+                = user-search-overview user=user
 
 = partial "paginate"

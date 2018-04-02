@@ -1,12 +1,10 @@
-.columns
-  .column.table-container
-    table.file-analysis-table
-      tr
-        th
-          | S.NO
-        th
-          |	Vulterability
-        th
-          |	Risk Type
-      / each analyses as analysis
-      = analysis-overview analysis=analysis
+table.file-analysis-table
+  tr
+    th
+      | S.NO
+    th
+      |	Vulterability
+    th
+      |	Risk Type
+  / each analyses as analysis
+  = analysis-overview analysis=analysis

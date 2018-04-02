@@ -1,19 +1,18 @@
 .columns
-  .column.is-one-quarter.margin-auto
+  .column.is-half.margin-auto
     .box.margin-top10
-      .margin-auto
-        h3
-          | Upload Report
-        h6
-          | Once report is uploaded, an email will be sent to project owner.
-        h6
-          | If you need to mail other users, please add emails, seperated by comma in the form below.
-        form.input-form
-          p.control
-            = input class="form-control input" id="file-number" placeholder="Enter the File number" type="text" value=fileNumber
-          p.control
-            = input class="form-control input" id="email-ids" placeholder="Enter the Email IDs" type="email" value=emailIds
-          p.control
-            = input type="file"
-          button.is-primary click="uploadReport"
-            | Upload
+      h3
+        | Upload Report
+      h6
+        | Once report is uploaded, an email will be sent to project owner.
+      h6
+        | If you need to mail other users, please add emails, seperated by comma in the form below.
+      form.input-form
+        p.control
+          = input class="form-control input" id="file-number" placeholder="Enter the File number" type="text" value=fileNumber
+        p.control
+          = input class="form-control input" id="email-ids" placeholder="Enter the Email IDs" type="email" value=emailIds
+        p.control
+          = input type="file"
+        button.is-primary click="uploadReport"
+          | Upload

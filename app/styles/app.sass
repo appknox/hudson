@@ -64,6 +64,12 @@ button, .button
 
 .tabs
   margin-top: 50px
+  &.is-boxed
+    ul
+      border-color: #f0f0f0
+    li.is-active a
+      border-top: 3px solid #EF4836
+      background-color: #FFF
 
 .logo
   padding-bottom: 0px!important
@@ -79,23 +85,22 @@ button, .button
     text-align: center
 
 .search-input
-  width: 50%
-  margin-left: 25%
+  width: 80%
+  margin-left: 10%
 
-.table-container
-  .users-list-table, .file-analysis-table
-    width: 300px
-    margin: auto
-    .table-button a
-      font-size: 12px
-    tr
-      td, th
-        text-align: center
-  .file-analysis-table
-    width: 800px
-    tr
-      th:first-child
-        width: 20px
+.users-list-table, .file-analysis-table
+  width: 600px
+  margin: auto
+  .table-button a
+    font-size: 12px
+  tr
+    td, th
+      text-align: center
+.file-analysis-table
+  width: 650px
+  tr
+    th:first-child
+      width: 20px
 
 
 

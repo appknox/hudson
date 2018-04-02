@@ -1,11 +1,10 @@
 .columns
-  .column
+  .column.is-half.margin-auto
     .box.margin-top10
-      .margin-auto
-        h3
-          | Update Analysis with File ID
-        form.input-form
-          p.control
-            = input class="form-control input" id="file-id" placeholder="Search for a file with file ID" type="text" value=fileId
-          button.is-primary click="searchFile"
-            | Search
+      h3
+        | Update Analysis with File ID
+      form.input-form
+        p.control
+          = input class="form-control input" id="file-id" placeholder="Search for a file with file ID" type="text" value=fileId
+        button.is-primary click="searchFile"
+          | Search

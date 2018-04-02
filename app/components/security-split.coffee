@@ -55,7 +55,7 @@ SecuritySplitComponent = Ember.Component.extend
       @set "isUploadReportClass", false
       @set "isDowloadReportClass", false
       @set "isSearchClass", true
-      @set "isPurgeAnalysisClass", true
+      @set "isPurgeAnalysisClass", false
 
     displayPurgeAnalysis: ->
       @set "isGenerateReportClass", false
