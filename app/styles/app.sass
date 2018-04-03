@@ -8,8 +8,15 @@
 .margin-top10
   margin-top: 10px
 
+.margin-top30
+  margin-top: 30px
+
 .margin-right
   margin-right: 10px
+
+.border-botton-container
+  border-bottom: 3px solid #f0f0f0
+  margin: 10px -20px
 
 .margin-left
   margin-left: 10px
@@ -88,7 +95,7 @@ button, .button
   width: 80%
   margin-left: 10%
 
-.users-list-table, .file-analysis-table
+.users-list-table, .file-analysis-table, .finding-list-table
   width: 600px
   margin: auto
   .table-button a
@@ -101,8 +108,14 @@ button, .button
   tr
     th:first-child
       width: 20px
+.finding-list-table
+  tr td
+    text-align: left     
 
 
+.bold-font
+  color: #000
+  font-weight: 900
 
 table.users-table, table.dynamic-scan-table
   box-shadow: 0px 1px 6px rgba(0,0,0,0.6)
@@ -274,3 +287,10 @@ hr.horizontal-seperator2
 .file-input
   position: fixed
   top: -100px
+
+.cvss-score-section
+  margin-top: 100px
+  .column
+    margin: auto
+    h1, h3
+      text-align: center

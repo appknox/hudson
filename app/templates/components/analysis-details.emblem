@@ -1,0 +1,137 @@
+.columns
+  .column.is-half.margin-auto
+    h3
+      | MFVA | 5603
+    .box
+      .columns.border-botton-container
+        .column
+          h4
+            | Cordova Remote Start Page Manipulation Vulnerability
+        .column.is-one-sixth.content-right
+          h4
+            | High
+      .columns.border-botton-container
+        .column.is-one-third
+          h6.bold-font
+            | CVSS Metrics
+          .columns
+            .column
+              | Attack Vector
+            .column
+              select
+                option
+                  | Physical
+          .columns
+            .column
+              | Attack Complexity
+            .column
+              select
+                option
+                  | Physical
+          .columns
+            .column
+              | Privileges Required
+            .column
+              select
+                option
+                  | Physical
+          .columns
+            .column
+              | User Interaction
+            .column
+              select
+                option
+                  | Physical
+          .columns
+            .column
+              | Scope
+            .column
+              select
+                option
+                  | Physical
+          .columns
+            .column
+              | Confidentiality Impact
+            .column
+              select
+                option
+                  | Physical
+          .columns
+            .column
+              | Integrity Impact
+            .column
+              select
+                option
+                  | Physical
+          .columns
+            .column
+              | Availability Impact
+            .column
+              select
+                option
+                  | Physical
+        .column.is-one-third.cvss-score-section
+          .columns
+            .column
+              h6
+                | Projected CVSS base score:
+            .column
+              h1
+                | 9.9
+          .columns
+            .column
+              h6
+                | Projected risk
+            .column
+              h3
+                | Medium
+      .columns
+        .column.is-one-third
+          h6.bold-font
+            | OWASP Category
+      .columns.border-botton-container
+        .column.is-one-quarter
+          = power-select-multiple placeholder="Select OWASP Categories" selected=owasp options=owasps onchange=(action (mut owasp)) as |owasp|
+            = owasp
+      .columns
+        .column.is-one-third
+          h6.bold-font
+            | Findings
+      form
+        .columns
+          .column.is-one-third
+            p.control.is-fullwidth
+              | Title
+            p.control.is-fullwidth
+              = textarea class="form-control input" type="text"
+          .column.is-one-third
+            p.control.is-fullwidth
+              | Description
+            p.control.is-fullwidth
+              = textarea class="form-control input" type="text"
+          .column.is-one-third
+            p.control.is-fullwidth
+              button.is-primary.margin-top30
+                | Add Finding
+
+      h6.bold-font
+        | List of Findings
+      .columns
+        .column
+          table.finding-list-table
+            tr
+              th
+                | Title
+              th
+                | Description
+              th
+                | Delete
+            tr
+              td
+                | Title
+              td
+                | Tag: ExportedReceiver Message: Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+              td
+                div.pointed-cursor
+                  = fa-icon "trash-o"
+        .column.is-one-third
