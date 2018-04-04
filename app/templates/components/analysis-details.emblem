@@ -1,7 +1,7 @@
 .columns
   .column.is-half.margin-auto
     h3
-      | MFVA | 5603
+      | com.appknox.mfva | MFVA | 5603
     .box
       .columns.border-botton-container
         .column
@@ -11,9 +11,20 @@
           h4
             | High
       .columns.border-botton-container
+        h5.bold-font.margin-left20
+          | CVSS Metrics
+        .column.is-one-third.cvss-score-section
+
+          .columns
+            .column
+              h1
+                | 9.9
+          .columns
+            .column
+              h3
+                | Medium
         .column.is-one-third
-          h6.bold-font
-            | CVSS Metrics
+
           .columns
             .column
               | Attack Vector
@@ -70,34 +81,19 @@
               select
                 option
                   | Physical
-        .column.is-one-third.cvss-score-section
-          .columns
-            .column
-              h6
-                | Projected CVSS base score:
-            .column
-              h1
-                | 9.9
-          .columns
-            .column
-              h6
-                | Projected risk
-            .column
-              h3
-                | Medium
       .columns
         .column.is-one-third
-          h6.bold-font
+          h5.bold-font
             | OWASP Category
       .columns.border-botton-container
-        .column.is-one-quarter
+        .column.is-one-third.margin-bottom20
           = power-select-multiple placeholder="Select OWASP Categories" selected=owasp options=owasps onchange=(action (mut owasp)) as |owasp|
             = owasp
       .columns
         .column.is-one-third
-          h6.bold-font
+          h5.bold-font
             | Findings
-      form
+      form.form
         .columns
           .column.is-one-third
             p.control.is-fullwidth
@@ -114,9 +110,9 @@
               button.is-primary.margin-top30
                 | Add Finding
 
-      h6.bold-font
+      h6.bold-font.margin-top10.margin-bottom0
         | List of Findings
-      .columns
+      .columns.border-botton-container
         .column
           table.finding-list-table
             tr
@@ -128,10 +124,51 @@
                 | Delete
             tr
               td
-                | Title
+                | Risk Assessment
               td
                 | Tag: ExportedReceiver Message: Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
               td
                 div.pointed-cursor
                   = fa-icon "trash-o"
         .column.is-one-third
+      .columns
+        .column
+          h5.bold-font
+            | Attachments
+      .columns
+        .column
+
+          form
+            p.control.is-fullwidth
+              = input type="file"
+      h6.bold-font.margin-top10.margin-bottom0
+        | List of Attachments
+      .columns.border-botton-container
+        .column
+          table.attachments-list-table
+            tr
+              th
+                | File Key
+              th
+                | Upload Date
+              th
+                | Owner
+              th
+                | Attachment ID
+              th colspan="2"
+                | Actions
+            tr
+              td
+                | a6ed0325-5917-40f1-ac87-c4f5a2c5d4f8_2.png
+              td
+                | March 22, 2018, 9:16 a.m.
+              td
+                | 1322 - jagadeesh
+              td
+                | 11
+              td
+                div.pointed-cursor
+                  = fa-icon "trash-o"
+              td
+                div.pointed-cursor
+                  = fa-icon "download"

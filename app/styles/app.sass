@@ -8,6 +8,12 @@
 .margin-top10
   margin-top: 10px
 
+.margin-bottom20
+  margin-bottom: 20px
+
+.margin-bottom0
+  margin-bottom: 0px!important
+
 .margin-top30
   margin-top: 30px
 
@@ -20,6 +26,9 @@
 
 .margin-left
   margin-left: 10px
+
+.margin-left20
+  margin-left: 20px
 
 .pointed-cursor
   cursor: pointer
@@ -69,6 +78,10 @@ button, .button
 .modal-card
   width: 30%
 
+.form
+  textarea
+    height: 100px
+
 .tabs
   margin-top: 50px
   &.is-boxed
@@ -95,27 +108,35 @@ button, .button
   width: 80%
   margin-left: 10%
 
-.users-list-table, .file-analysis-table, .finding-list-table
+.users-list-table, .file-analysis-table, .finding-list-table, .attachments-list-table
   width: 600px
   margin: auto
   .table-button a
     font-size: 12px
-  tr
-    td, th
-      text-align: center
+  td, th
+    text-align: center
+  th
+    background-color: darken(#f6f8fa, 1%)
+    border: 1px solid lighten(#eaecef, 2%)
+    color: darken(#586069, 1%)
 .file-analysis-table
   width: 650px
   tr
     th:first-child
       width: 20px
 .finding-list-table
+  width: 900px
   tr td
-    text-align: left     
+    text-align: left
+    &:last-child
+      text-align: center
+.attachments-list-table
+  width: 900px
 
 
 .bold-font
   color: #000
-  font-weight: 900
+  font-weight: 500
 
 table.users-table, table.dynamic-scan-table
   box-shadow: 0px 1px 6px rgba(0,0,0,0.6)
@@ -289,7 +310,7 @@ hr.horizontal-seperator2
   top: -100px
 
 .cvss-score-section
-  margin-top: 100px
+  margin-top: 50px
   .column
     margin: auto
     h1, h3
