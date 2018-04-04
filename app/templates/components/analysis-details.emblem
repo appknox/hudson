@@ -10,11 +10,18 @@
         .column.is-one-sixth.content-right
           h4
             | High
+      .columns
+        .column.is-one-third
+          h5.bold-font
+            | Status
+      .columns.border-botton-container
+        .column.is-one-sixth.margin-bottom20
+          = power-select selected=selectedStatus options=statuses onchange=(action "selectStatus") as |status|
+            = status.key
       .columns.border-botton-container
         h5.bold-font.margin-left20
           | CVSS Metrics
         .column.is-one-third.cvss-score-section
-
           .columns
             .column
               h1
@@ -29,58 +36,50 @@
             .column
               | Attack Vector
             .column
-              select
-                option
-                  | Physical
+              = power-select selected=selectedAttackVector options=attackVectors onchange=(action "selectAttackVector") as |attackVector|
+                = attackVector.key
           .columns
             .column
               | Attack Complexity
             .column
-              select
-                option
-                  | Physical
+              = power-select selected=selectedAttackComplexity options=attackComplexities onchange=(action "selectAttackComplexity") as |attackComplexity|
+                = attackComplexity.key
           .columns
             .column
               | Privileges Required
             .column
-              select
-                option
-                  | Physical
+              = power-select selected=selectedRequiredPrevilege options=requiredPrevileges onchange=(action "selectRequiredPrevilege") as |requiredPrevilege|
+                = requiredPrevilege.key
           .columns
             .column
               | User Interaction
             .column
-              select
-                option
-                  | Physical
+              = power-select selected=selectedUserInteraction options=userInteractions onchange=(action "selectUserInteraction") as |userInteraction|
+                = userInteraction.key
           .columns
             .column
               | Scope
             .column
-              select
-                option
-                  | Physical
+              = power-select selected=selectedScope options=scopes onchange=(action "selectScope") as |scope|
+                = scope.key
           .columns
             .column
               | Confidentiality Impact
             .column
-              select
-                option
-                  | Physical
+              = power-select selected=selectedConfidentialityImpact options=confidentialityImpacts onchange=(action "selectConfidentialityImpact") as |confidentialityImpact|
+                = confidentialityImpact.key
           .columns
             .column
               | Integrity Impact
             .column
-              select
-                option
-                  | Physical
+              = power-select selected=selectedIntegrityImpact options=integrityImpacts onchange=(action "selectIntegrityImpact") as |integrityImpact|
+                = integrityImpact.key
           .columns
             .column
               | Availability Impact
             .column
-              select
-                option
-                  | Physical
+              = power-select selected=selectedAvailabilityImpact options=availabilityImpacts onchange=(action "selectAvailabilityImpact") as |availabilityImpact|
+                = availabilityImpact.key
       .columns
         .column.is-one-third
           h5.bold-font
@@ -88,48 +87,51 @@
       .columns.border-botton-container
         .column.is-one-third.margin-bottom20
           = power-select-multiple placeholder="Select OWASP Categories" selected=owasp options=owasps onchange=(action (mut owasp)) as |owasp|
-            = owasp
+            = owasp.key
       .columns
         .column.is-one-third
           h5.bold-font
             | Findings
-      form.form
-        .columns
-          .column.is-one-third
-            p.control.is-fullwidth
-              | Title
-            p.control.is-fullwidth
-              = textarea class="form-control input" type="text"
-          .column.is-one-third
-            p.control.is-fullwidth
-              | Description
-            p.control.is-fullwidth
-              = textarea class="form-control input" type="text"
-          .column.is-one-third
-            p.control.is-fullwidth
-              button.is-primary.margin-top30
-                | Add Finding
-
-      h6.bold-font.margin-top10.margin-bottom0
-        | List of Findings
-      .columns.border-botton-container
-        .column
-          table.finding-list-table
-            tr
-              th
+      .border-botton-container
+        form.form.margin-left20
+          .columns
+            .column.is-one-third
+              p.control.is-fullwidth
                 | Title
-              th
+              p.control.is-fullwidth
+                = textarea class="form-control input" type="text" value=findingTitle
+            .column.is-one-third
+              p.control.is-fullwidth
                 | Description
-              th
-                | Delete
-            tr
-              td
-                | Risk Assessment
-              td
-                | Tag: ExportedReceiver Message: Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
-              td
-                div.pointed-cursor
-                  = fa-icon "trash-o"
+              p.control.is-fullwidth
+                = textarea class="form-control input" type="text" value=findingDescription
+            .column.is-one-third
+              p.control.is-fullwidth
+                button.is-primary.margin-top30 click="addFinding"
+                  | Add Finding
+
+        if allFindings
+          h6.bold-font.margin-top10.margin-left20
+            | List of Findings
+          .columns
+            .column
+              table.finding-list-table
+                tr
+                  th
+                    | Title
+                  th
+                    | Description
+                  th
+                    | Delete
+                each allFindings as |finding|
+                  tr
+                    td
+                      = finding.title
+                    td
+                      = finding.description
+                    td
+                      div.pointed-cursor click="'openRemoveFindingConfirmBox' finding.id"
+                        = fa-icon "trash-o"
         .column.is-one-third
       .columns
         .column
@@ -167,8 +169,12 @@
               td
                 | 11
               td
-                div.pointed-cursor
+                div.pointed-cursor click="'openRemoveFileConfirmBox' finding.id"
                   = fa-icon "trash-o"
               td
                 div.pointed-cursor
                   = fa-icon "download"
+
+= confirm-box isActive=showRemoveFindingConfirmBox title="Are you sure you want to remove this finding" delegate=this
+
+= confirm-box isActive=showRemoveFileConfirmBox title="Are you sure you want to remove this file" delegate=this

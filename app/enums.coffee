@@ -44,6 +44,72 @@ ENUMS =
     MARKETING: 4
     DESIGN: 5
 
+  ATTACK_VECTOR:
+    NETWORK: "N"
+    ADJACENT: "A"
+    LOCAL: "L"
+    PHYSICAL: "P"
+
+  ATTACK_COMPLEXITY:
+    LOW: "L"
+    HIGH: "H"
+
+  PRIVILEGES_REQUIRED:
+    NONE: "N"
+    LOW: "L"
+    HIGH: "H"
+
+  USER_INTERACTION:
+    NOT_REQUIRED: "N"
+    REQUIRED: "R"
+
+  SCOPE:
+    UNCHANGED: "U"
+    CHANGED: "C"
+
+  CONFIDENTIALITY_IMPACT:
+    NONE: "N"
+    LOW: "L"
+    HIGH: "H"
+
+  INTEGRITY_IMPACT:
+    NONE: "N"
+    LOW: "L"
+    HIGH: "H"
+
+  AVAILABILITY_IMPACT:
+    NONE: "N"
+    LOW: "L"
+    HIGH: "H"
+
+  ANALYSIS_STATUS:
+     ERROR: 0
+     WAITING: 1
+     RUNNING: 2
+     COMPLETED: 3
+
+  OWASP_CATEGORIES:
+    M1_2013: 1
+    M2_2013: 2
+    M3_2013: 3
+    M4_2013: 4
+    M5_2013: 5
+    M6_2013: 6
+    M7_2013: 7
+    M8_2013: 8
+    M9_2013: 9
+    M10_2013: 10
+    A1_2013: 11
+    A2_2013: 12
+    A3_2013: 13
+    A4_2013: 14
+    A5_2013: 15
+    A6_2013: 16
+    A7_2013: 17
+    A8_2013: 18
+    A9_2013: 19
+    A10_2013: 20
+
 # Populate `CHOICES`
 for enumName, enumValues of ENUMS
   choices = []
