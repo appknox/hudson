@@ -9,7 +9,6 @@ const LoginComponentComponent = Ember.Component.extend({
   session: Ember.inject.service('session'),
   actions: {
     authenticate() {
-      const that = this;
       const identification = this.get("identification");
       const password = this.get("password");
       return this.get('session').authenticate('authenticator:hudson', identification, password);

@@ -20,14 +20,5 @@ test('it renders', function(assert) {
 
   assert.equal(this.$().text().trim(), '');
 
-  // Template block usage:
-  this.render(hbs(`\
-{{#coupon-details}}
-  template block text
-{{/coupon-details}}\
-`
-  )
-  );
-
   return assert.equal(this.$().text().trim(), 'template block text');
 });

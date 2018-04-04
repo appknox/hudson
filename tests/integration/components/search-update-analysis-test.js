@@ -20,14 +20,5 @@ test('it renders', function(assert) {
 
   assert.equal(this.$().text().trim(), '');
 
-  // Template block usage:
-  this.render(hbs(`\
-{{#search-update-analysis}}
-  template block text
-{{/search-update-analysis}}\
-`
-  )
-  );
-
   return assert.equal(this.$().text().trim(), 'template block text');
 });

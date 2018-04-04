@@ -21,7 +21,10 @@ const GenerateReportComponent = Ember.Component.extend({
       };
       const that = this;
       return this.get("ajax").post(ENV.endpoints.generateReport, {data})
-      .then(data => that.get("notify").success("Report Generated and sent to the Email ID(s)")).catch(error =>
+      .then(function(){
+        that.get("notify").success("Report Generated and sent to the Email ID(s)");
+      })
+      .catch(error =>
         (() => {
           const result = [];
           for (error of Array.from(error.errors)) {

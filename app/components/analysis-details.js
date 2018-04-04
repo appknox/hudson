@@ -1,10 +1,7 @@
 import Ember from 'ember';
 import ENUMS from 'hudson/enums';
-import { task } from 'ember-concurrency';
 
 const isEmpty = inputValue=> Ember.isEmpty(inputValue);
-
-const { get, set } = Ember;
 
 const AnalysisDetailsComponent = Ember.Component.extend({
 

@@ -49,7 +49,7 @@ const PasswordResetComponent = Ember.Component.extend({
         password
       };
       return this.get("ajax").post(ENV.endpoints.reset, {data})
-      .then(function(data){
+      .then(function(){
         that.container.lookup("route:reset").transitionTo("login");
         return that.get("notify").success(" Password changed successfully");}).catch(error =>
         (() => {

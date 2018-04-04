@@ -8,7 +8,6 @@
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 import Ember from 'ember';
-import ENV from 'hudson/config/environment';
 
 const isEmpty = inputValue=> Ember.isEmpty(inputValue);
 
@@ -51,7 +50,7 @@ const CreateUserComponent = Ember.Component.extend({
       const that = this;
       const user = this.get('user');
       return user.save()
-      .then(function(data) {
+      .then(function() {
         that.send("closeModal");
         $('#create-user').find("input, textarea").val("");
         return that.get("notify").success("User added!");}).catch(error =>

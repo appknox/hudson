@@ -19,15 +19,6 @@ test('it renders', function(assert) {
   this.render(hbs("{{password-reset}}"));
 
   assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs(`\
-{{#password-reset}}
-  template block text
-{{/password-reset}}\
-`
-  )
-  );
-
+  
   return assert.equal(this.$().text().trim(), 'template block text');
 });

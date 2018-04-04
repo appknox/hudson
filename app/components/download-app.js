@@ -20,7 +20,10 @@ const DownloadAppComponent = Ember.Component.extend({
       };
       const that = this;
       return this.get("ajax").post(ENV.endpoints.downloadApp, {data})
-      .then(data => that.get("notify").success("App Downloaded Successfully")).catch(error =>
+      .then(function() {
+        that.get("notify").success("App Downloaded Successfully");
+      })
+      .catch(error =>
         (() => {
           const result = [];
           for (error of Array.from(error.errors)) {

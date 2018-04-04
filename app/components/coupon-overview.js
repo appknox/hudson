@@ -7,7 +7,6 @@
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 import Ember from 'ember';
-import ENV from 'hudson/config/environment';
 
 const CouponOverviewComponent = Ember.Component.extend({
 
@@ -26,7 +25,10 @@ const CouponOverviewComponent = Ember.Component.extend({
       }
       const that = this;
       return coupon.destroyRecord()
-      .then(data => that.get("notify").success(`Coupon ${couponCode} has been deleted`)).catch(error =>
+      .then(function(){
+        that.get("notify").success(`Coupon ${couponCode} has been deleted`);
+      })
+      .catch(error =>
         (() => {
           const result = [];
           for (error of Array.from(error.errors)) {

@@ -19,15 +19,6 @@ test('it renders', function(assert) {
   this.render(hbs("{{api-scans}}"));
 
   assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs(`\
-{{#api-scans}}
-  template block text
-{{/api-scans}}\
-`
-  )
-  );
-
+  
   return assert.equal(this.$().text().trim(), 'template block text');
 });

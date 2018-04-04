@@ -83,7 +83,7 @@ const HudsonAuthenticator = Base.extend({
     });
   },
 
-  invalidate(data) {
+  invalidate() {
     const ajax = this.get("ajax");
     localStorage.clear();
     this.set("currentUser", null);

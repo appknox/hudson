@@ -19,15 +19,6 @@ test('it renders', function(assert) {
   this.render(hbs("{{stat-component}}"));
 
   assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs(`\
-{{#stat-component}}
-  template block text
-{{/stat-component}}\
-`
-  )
-  );
-
+  
   return assert.equal(this.$().text().trim(), 'template block text');
 });

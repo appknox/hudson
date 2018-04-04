@@ -7,7 +7,6 @@
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 import Ember from 'ember';
-import ENV from 'hudson/config/environment';
 
 const isEmpty = inputValue=> Ember.isEmpty(inputValue);
 
@@ -36,7 +35,7 @@ const CreatePricingComponent = Ember.Component.extend({
       const that = this;
       const pricing = this.get('pricing');
       return pricing.save()
-      .then(function(data){
+      .then(function(){
         that.send("closeModal");
         $('#create-pricing').find("input, textarea").val("");
         return that.get("notify").success("Pricing added!");}).catch(error =>

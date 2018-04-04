@@ -19,15 +19,6 @@ test('it renders', function(assert) {
   this.render(hbs("{{create-user}}"));
 
   assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs(`\
-{{#create-user}}
-  template block text
-{{/create-user}}\
-`
-  )
-  );
-
+  
   return assert.equal(this.$().text().trim(), 'template block text');
 });

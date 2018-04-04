@@ -42,7 +42,7 @@ const CouponDetailsComponent = Ember.Component.extend({
       const that = this;
       const coupon = this.get('coupon');
       return coupon.save()
-      .then(function(data) {
+      .then(function() {
         that.set("showHide", true);
         that.set("editUnedit", false);
         return that.get("notify").success("Coupon Updated!");}).catch(error =>

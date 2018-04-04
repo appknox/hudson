@@ -21,7 +21,10 @@ const DynamicScanOverviewComponent = Ember.Component.extend({
         {file_id: fileId};
       const that = this;
       return this.get("ajax").post(ENV.endpoints.dynamicScan, {data})
-      .then(data => that.get("notify").success("Dynamic Scan Stopped Successfully")).catch(error =>
+      .then(function(){
+        that.get("notify").success("Dynamic Scan Stopped Successfully");
+      })
+      .catch(error =>
         (() => {
           const result = [];
           for (error of Array.from(error.errors)) {

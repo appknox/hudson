@@ -7,7 +7,6 @@
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 import Ember from 'ember';
-import ENV from 'hudson/config/environment';
 
 const PricingOverviewComponent = Ember.Component.extend({
 
@@ -26,7 +25,10 @@ const PricingOverviewComponent = Ember.Component.extend({
       }
       const that = this;
       return pricing.destroyRecord()
-      .then(data => that.get("notify").success(`Pricing ${pricingName} has been deleted`)).catch(error =>
+      .then(function() {
+        that.get("notify").success(`Pricing ${pricingName} has been deleted`);
+      })
+      .catch(error =>
         (() => {
           const result = [];
           for (error of Array.from(error.errors)) {

@@ -7,7 +7,6 @@
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
 import Ember from 'ember';
-import ENV from 'hudson/config/environment';
 
 const isEmpty = inputValue=> Ember.isEmpty(inputValue);
 
@@ -37,7 +36,7 @@ const CreateCouponComponent = Ember.Component.extend({
       const discountPercentage = discount/100;
       coupon.set("discount", discountPercentage);
       return coupon.save()
-      .then(function(data){
+      .then(function(){
         that.send("closeModal");
         $('#create-coupon').find("input").val("");
         return that.get("notify").success("Coupon added!");}).catch(error =>

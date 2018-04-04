@@ -44,7 +44,7 @@ const PricingDetailsComponent = Ember.Component.extend({
       const that = this;
       const pricing = this.get('pricing');
       return pricing.save()
-      .then(function(data) {
+      .then(function() {
         that.set("showHide", true);
         that.set("editUnedit", false);
         return that.get("notify").success("Pricing Updated!");}).catch(error =>
