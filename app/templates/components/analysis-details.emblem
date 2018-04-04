@@ -139,7 +139,6 @@
             | Attachments
       .columns
         .column
-
           form
             p.control.is-fullwidth
               = input type="file"
