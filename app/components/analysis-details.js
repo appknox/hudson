@@ -1,5 +1,8 @@
 import Ember from 'ember';
 import ENUMS from 'hudson/enums';
+import { task } from 'ember-concurrency';
+
+const { get, set } = Ember;
 
 const isEmpty = inputValue=> Ember.isEmpty(inputValue);
 
@@ -44,7 +47,35 @@ const AnalysisDetailsComponent = Ember.Component.extend({
     return allFinding.id !== deletedFinding;
   }),
 
+  uploadPhoto: task(function * (file) {
+    let product = this.modelFor('product');
+    let photo = this.store.createRecord('photo', {
+      product,
+      filename: get(file, 'name'),
+      filesize: get(file, 'size')
+    });
+
+    try {
+      file.readAsDataURL().then(function (url) {
+        if (get(photo, 'url') == null) {
+          set(photo, 'url', url);
+        }
+      });
+
+      let response = yield file.upload('/api/images/upload');
+      set(photo, 'url', response.headers.Location);
+      yield photo.save();
+    } catch (e) {
+      photo.rollback();
+    }
+  }).maxConcurrency(3).enqueue(),
+
   actions: {
+    
+    uploadImage(file) {
+      get(this, 'uploadPhoto').perform(file);
+    },
+
     selectScope(param) {
       this.set('selectedScope', param);
     },

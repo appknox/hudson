@@ -141,7 +141,12 @@
         .column
           form
             p.control.is-fullwidth
-              = input type="file"
+              = file-upload name="photos" accept="image/*" onfileadd=(action "uploadImage") as |queue|
+                a class="button is-primary"
+                  if queue.files.length
+                    | Uploading...
+                  else
+                    | Upload file
       h6.bold-font.margin-top10.margin-bottom0
         | List of Attachments
       .columns.border-botton-container
