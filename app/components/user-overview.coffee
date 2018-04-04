@@ -20,7 +20,6 @@ UserOverviewComponent = Ember.Component.extend
       .then (data) ->
         that.get("notify").success "User " + userName + " has been deleted"
       .catch (error) ->
-        debugger
         for error in error.errors
           that.get("notify").error error.detail?.message
 
