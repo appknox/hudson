@@ -65,7 +65,7 @@ const AuthenticatedRoute = Ember.Route.extend(AuthenticatedRouteMixin, {
 
   model() {
     const userId = this.get("session.data.authenticated.user_id");
-    return this.get('store').find('user', userId);
+    return this.get('store').findRecord('user', userId);
   },
 
   redirect(){
