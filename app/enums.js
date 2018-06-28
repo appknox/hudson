@@ -104,6 +104,15 @@ const ENUMS = {
      COMPLETED: 3
    },
 
+   RISK: {
+     NONE: 0,
+     LOW: 1,
+     MEDIUM: 2,
+     HIGH: 3,
+     CRITICAL: 4
+   },
+
+
   OWASP_CATEGORIES: {
     M1_2013: 1,
     M2_2013: 2,

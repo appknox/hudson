@@ -3,18 +3,14 @@
     li class=generateReportClass click="displayGenerateReport"
       = link-to 'authenticated.security.generatereport'
         | Generate Report
-    li class=uploadReportClass click="displayUploadReport"
-      = link-to 'authenticated.security.uploadreport'
-        | Upload Report
     li class=downloadReportClass click="displayDownloadReport"
       = link-to 'authenticated.security.downloadreport'
         | Download Report
     li class=purgeAnalysisClass click="displayPurgeAnalysis"
       = link-to 'authenticated.security.purgeanalysis'
-        | Purge API Analyses    
+        | Purge API Analyses
     li class=searchClass click="displaySearch"
-      = link-to 'authenticated.security.users'
+      = link-to 'authenticated.security.projects'
         | Search
-
 
 = outlet

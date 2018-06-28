@@ -68,6 +68,13 @@ const AuthenticatedRoute = Ember.Route.extend(AuthenticatedRouteMixin, {
     return this.get('store').find('user', userId);
   },
 
+  redirect(){
+    const loc = window.location.pathname.startsWith("/security/")
+    if(!loc) {
+      this.transitionTo('/security/');
+    }
+  },
+
   actions: {
     invalidateSession() {
       return this.get('session').invalidate();

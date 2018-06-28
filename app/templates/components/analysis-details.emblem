@@ -15,8 +15,8 @@
           h5.bold-font
             | Status
       .columns.border-botton-container
-        .column.is-one-sixth.margin-bottom20
-          = power-select selected=selectedStatus options=statuses onchange=(action "selectStatus") as |status|
+        .column.is-one-third.margin-bottom20
+          = power-select placeholder="Select Status" selected=selectedStatus options=statuses onchange=(action "selectStatus") as |status|
             = status.key
       .columns.border-botton-container
         h5.bold-font.margin-left20
@@ -91,6 +91,22 @@
       .columns
         .column.is-one-third
           h5.bold-font
+            | PCI-DSS Risk Category
+      .columns.border-botton-container
+        .column.margin-bottom20
+          = power-select-multiple placeholder="Select PCI-DSS Risk Category" selected=pci options=pcis onchange=(action (mut pci)) as |pci|
+            = pci
+      .columns
+        .column.is-one-third
+          h5.bold-font
+            | Override Risk
+      .columns.border-botton-container
+        .column.margin-bottom20.is-one-third
+          = power-select placeholder="Select Risk" selected=risk options=risks onchange=(action (mut risk)) as |risk|
+            = risk.key
+      .columns
+        .column.is-one-third
+          h5.bold-font
             | Findings
       .border-botton-container
         form.form.margin-left20
@@ -149,7 +165,7 @@
                     | Upload file
       h6.bold-font.margin-top10.margin-bottom0
         | List of Attachments
-      .columns.border-botton-container
+      .columns.border-bottom-container
         .column
           table.attachments-list-table
             tr

@@ -13,6 +13,8 @@ const AnalysisDetailsComponent = Ember.Component.extend({
   findingTitle: "",
   findingDescription: "",
 
+  pcis: [],
+  risks: ENUMS.RISK.CHOICES.slice(0, -1),
   scopes: ENUMS.SCOPE.CHOICES.slice(0, -1),
   statuses: ENUMS.ANALYSIS_STATUS.CHOICES.slice(0),
   owasps: ENUMS.OWASP_CATEGORIES.CHOICES.slice(0, -1),
@@ -71,7 +73,7 @@ const AnalysisDetailsComponent = Ember.Component.extend({
   }).maxConcurrency(3).enqueue(),
 
   actions: {
-    
+
     uploadImage(file) {
       get(this, 'uploadPhoto').perform(file);
     },
