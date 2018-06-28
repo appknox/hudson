@@ -12,7 +12,7 @@ const FileListComponent = Ember.Component.extend(PaginateMixin, {
   stat: (function() {
     return this.get('store').find('stat', 1);
   }).property(),
-
+  
   query: "",
   targetObject: "file",
 

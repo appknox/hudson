@@ -43,7 +43,7 @@ Router.map(function() {
     this.route('security', {path: '/security'}, function() {
       this.route('users');
       this.route('projects');
-      this.route('files', {path: '/:packageName/files'});
+      this.route('files', {path: '/:projectId/files'});
       this.route('file', {path: '/file/:fileId'});
       this.route('generatereport');
       this.route('uploadreport');

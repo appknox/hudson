@@ -8,6 +8,10 @@ const ProjectAdapter = DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   namespace: "hudson-api",
   headers: {
     'Accept': 'application/json'
+  },
+  query: function query() {
+    let url = `${this.get('host')}/${this.get('namespace')}/projects`;
+    return this.ajax(url, 'GET');
   }
 });
 

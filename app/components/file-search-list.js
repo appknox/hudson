@@ -42,8 +42,10 @@ const FileSearchListComponent = Ember.Component.extend(PaginateMixin, {
   }),
 
   extraQueryStrings: Ember.computed("query", function() {
-    const query =
-      {query: this.get("query")};
+    const query = {
+      query: this.get("query"),
+      projectId: this.get("project.projectId")
+    };
     return JSON.stringify(query, Object.keys(query).sort());
   })
 }

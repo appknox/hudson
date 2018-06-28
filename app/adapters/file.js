@@ -10,8 +10,7 @@ const FileAdapter = DS.JSONAPIAdapter.extend(DataAdapterMixin, {
     'Accept': 'application/json'
   },
   query: function query(store, type, q) {
-    q.id = 5;
-    let url = `${this.get('host')}/${this.get('namespace')}/projects/${q.id}/files`;
+    let url = `${this.get('host')}/${this.get('namespace')}/projects/${q.projectId}/files`;
     return this.ajax(url, 'GET');
   }
 });
