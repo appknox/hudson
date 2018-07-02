@@ -1,7 +1,7 @@
 td
-  | 1
+  = analysis.id
 td
-  = link-to 'authenticated.security.analysis' 1
-    | Cordova Remote Start Page Manipulation Vulnerability
+  = link-to 'authenticated.security.analysis' analysis.id
+    = analysis.vulnerability.name
 td
-  | High
+  = analysis.risk

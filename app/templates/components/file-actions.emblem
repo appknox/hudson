@@ -1,23 +1,16 @@
 .columns
   .column.is-half.margin-auto
     .file-action-container
-      h3
-        | MFVA | 5603
-      .box
-        h3
-          | Actions
-        .columns
-          .column.has-text-centered
-            button.is-primary
-              | Generate Report
+      .columns
+        .column
+          h3
+            | #{fileDetails.name} | #{fileDetails.id}
 
-          .column.has-text-centered
-            button.is-primary
-              | Upload Report
-
-          .column.has-text-centered
-            button.is-primary
-              | Download Report
+        .column.content-right
+          button.is-primary
+            | Generate Report
+          button.is-primary.margin-left
+            | Download Report
 
       .box
         .columns
@@ -28,4 +21,4 @@
             = create-analysis
         .columns
           .column
-            = analysis-list
+            = analysis-list fileDetails=fileDetails
