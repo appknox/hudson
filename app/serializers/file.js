@@ -9,14 +9,20 @@ export default DRFSerializer.extend({
           type: 'file',
           attributes: {
             name: payload.name,
-            analyses: payload.analyses
+            analyses: payload.analyses.map((item) => {
+              return {
+                id: item.id,
+                risk: item.risk,
+                vulnerabilityName: item['vulnerability-name']
+              }
+            })
           }
         }
       };
     }
     else {
       return {
-        data: payload.results.map((item)=> {
+        data: payload.results.map((item) => {
           return {
             id: item.id,
             type: 'file',

@@ -14,7 +14,7 @@ const FileAdapter = DS.JSONAPIAdapter.extend(DataAdapterMixin, {
     return this.ajax(url, 'GET');
   },
   findRecord: function findRecord(store, type, q) {
-    let url = `${this.get('host')}/${this.get('namespace')}/projects/5/files/${q}`;
+    let url = `${this.get('host')}/${this.get('namespace')}/files/${q}`;
     return this.ajax(url, 'GET');
   }
 });
