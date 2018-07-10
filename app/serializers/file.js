@@ -8,14 +8,17 @@ export default DRFSerializer.extend({
           id: payload.id,
           type: 'file',
           attributes: {
-            name: payload.name,
-            analyses: payload.analyses.map((item) => {
-              return {
-                id: item.id,
-                risk: item.risk,
-                vulnerabilityName: item['vulnerability-name']
-              }
-            })
+            name: payload.name
+          },
+          relationships: {
+            analyses: {
+              data: payload.analyses.map((item) => {
+                return {
+                  type: "analysis",
+                  id: item.id
+                };
+              })
+            },
           }
         }
       };

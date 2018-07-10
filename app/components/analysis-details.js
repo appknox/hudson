@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import ENUMS from 'hudson/enums';
 import { task } from 'ember-concurrency';
+import ENV from 'hudson/config/environment';
 
 const { get, set } = Ember;
 
@@ -13,34 +14,46 @@ const AnalysisDetailsComponent = Ember.Component.extend({
   findingTitle: "",
   findingDescription: "",
 
-  pcis: [],
   risks: ENUMS.RISK.CHOICES.slice(0, -1),
   scopes: ENUMS.SCOPE.CHOICES.slice(0, -1),
-  statuses: ENUMS.ANALYSIS_STATUS.CHOICES.slice(0),
-  owasps: ENUMS.OWASP_CATEGORIES.CHOICES.slice(0, -1),
-  attackVectors: ENUMS.ATTACK_VECTOR.CHOICES.slice(0, -1),
-  integrityImpacts: ENUMS.INTEGRITY_IMPACT.CHOICES.slice(0, -1),
-  userInteractions: ENUMS.USER_INTERACTION.CHOICES.slice(0, -1),
-  attackComplexities: ENUMS.ATTACK_COMPLEXITY.CHOICES.slice(0, -1),
-  requiredPrevileges: ENUMS.PRIVILEGES_REQUIRED.CHOICES.slice(0, -1),
-  availabilityImpacts: ENUMS.AVAILABILITY_IMPACT.CHOICES.slice(0, -1),
-  confidentialityImpacts: ENUMS.CONFIDENTIALITY_IMPACT.CHOICES.slice(0, -1),
+  statuses: ENUMS.ANALYSIS_STATUS.VALUES.slice(0),
+  attackVectors: ENUMS.ATTACK_VECTOR.KEYS.slice(0, -1),
+  integrityImpacts: ENUMS.INTEGRITY_IMPACT.KEYS.slice(0, -1),
+  userInteractions: ENUMS.USER_INTERACTION.KEYS.slice(0, -1),
+  attackComplexities: ENUMS.ATTACK_COMPLEXITY.KEYS.slice(0, -1),
+  requiredPrevileges: ENUMS.PRIVILEGES_REQUIRED.KEYS.slice(0, -1),
+  availabilityImpacts: ENUMS.AVAILABILITY_IMPACT.KEYS.slice(0, -1),
+  confidentialityImpacts: ENUMS.CONFIDENTIALITY_IMPACT.KEYS.slice(0, -1),
+
+  analysisDetails: (function() {
+    return this.get("store").findRecord('analysis', this.get("analysis.analysisId"));
+  }).property(),
+
+  owasps: (function() {
+    this.get("store").findAll("owasp");
+  }).property(),
+
+  pcidss: (function() {
+    this.get("store").findAll("pcidss");
+  }).property(),
 
   allFindings: (function() {
     let findingId = this.get("findingId");
-    const findings = this.get("findings");
-    const that = this;
-    findings.forEach(function(finding) {
-      findingId = findingId + 1;
-      finding.id = findingId;
-      that.set("findingId", findingId);
-    });
-    return findings;
-  }).property("findings"),
+    const findings = this.get("analysisDetails.findings");
+    if(findings) {
+      findings.forEach((finding) => {
+        findingId = findingId + 1;
+        finding.id = findingId;
+        this.set("findingId", findingId);
+      });
+      return findings;
+    }
+  }).property("analysisDetails.findings"),
+
 
   confirmCallback() {
     const availableFindings = this.get("availableFindings");
-    this.set("findings", availableFindings);
+    this.set("analysisDetails.findings", availableFindings);
     return this.set("showRemoveFindingConfirmBox", false);
   },
 
@@ -78,44 +91,44 @@ const AnalysisDetailsComponent = Ember.Component.extend({
       get(this, 'uploadPhoto').perform(file);
     },
 
-    selectScope(param) {
-      this.set('selectedScope', param);
-    },
-
     selectStatus(param) {
-      this.set('selectedStatus', param);
+      this.set('analysisDetails.status', param);
     },
 
     selectAttackVector(param) {
-      this.set('selectedAttackVector', param);
+      this.set('analysisDetails.attackVector', param);
+    },
+
+    selectAttackComplexity(param) {
+      this.set('analysisDetails.attackComplexity', param);
+    },
+
+    selectRequiredPrevilege(param) {
+      this.set('analysisDetails.privilegesRequired', param);
+    },
+
+    selectUserInteraction(param) {
+      this.set('analysisDetails.userInteraction', param);
+    },
+
+    selectScope(param) {
+      this.set('analysisDetails.scope', param);
+    },
+
+    selectConfidentialityImpact(param) {
+      this.set('analysisDetails.confidentialityImpact', param);
+    },
+
+    selectIntegrityImpact(param) {
+      this.set('analysisDetails.integrityImpact', param);
+    },
+
+    selectAvailabilityImpact(param) {
+      this.set('analysisDetails.availabilityImpact', param);
     },
 
     selectOwaspCategory(param) {
       this.set('selectedOwaspCategory', param);
-    },
-
-    selectIntegrityImpact(param) {
-      this.set('selectedIntegrityImpact', param);
-    },
-
-    selectUserInteraction(param) {
-      this.set('selectedUserInteraction', param);
-    },
-
-    selectAttackComplexity(param) {
-      this.set('selectedAttackComplexity', param);
-    },
-
-    selectRequiredPrevilege(param) {
-      this.set('selectedRequiredPrevilege', param);
-    },
-
-    selectAvailabilityImpact(param) {
-      this.set('selectedAvailabilityImpact', param);
-    },
-
-    selectConfidentialityImpact(param) {
-      this.set('selectedConfidentialityImpact', param);
     },
 
     addFinding() {
@@ -126,7 +139,7 @@ const AnalysisDetailsComponent = Ember.Component.extend({
       }
       let findingId = this.get("findingId");
       findingId = findingId + 1;
-      const findings = this.get("findings");
+      const findings = this.get("analysisDetails.findings");
       const newFinding = {
         id: findingId,
         title: findingTitle,
@@ -134,7 +147,7 @@ const AnalysisDetailsComponent = Ember.Component.extend({
       };
       findings.addObject(newFinding);
       this.set("findingId", findingId);
-      this.set("findings", findings);
+      this.set("analysisDetails.findings", findings);
       this.get("notify").success("Finding Added");
       this.setProperties({
         findingTitle: "",
@@ -150,7 +163,24 @@ const AnalysisDetailsComponent = Ember.Component.extend({
     openRemoveFileConfirmBox(param) {
       this.set("deletedFile", param);
       this.set("showRemoveFileConfirmBox", true);
+    },
+
+    saveAnalysis() {
+      const status = this.get("analysisDetails.status");
+      const attackVector = this.get("analysisDetails.attackVector");
+      const attackComplexity = this.get("analysisDetails.attackComplexity");
+      const privilegesRequired = this.get("analysisDetails.privilegesRequired");
+      const userInteraction = this.get("analysisDetails.userInteraction");
+      const scope = this.get("analysisDetails.scope");
+      const confidentialityImpact = this.get("analysisDetails.confidentialityImpact");
+      const integrityImpact = this.get("analysisDetails.integrityImpact");
+      const availabilityImpact = this.get("analysisDetails.availabilityImpact");
+      const owasp = this.get("analysisDetails.owasp");
+      const pcidss = this.get("analysisDetails.pcidss");
+      const findings = this.get("analysisDetails.findings");
+      debugger
     }
+
   }
 });
 

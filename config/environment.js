@@ -57,8 +57,8 @@ module.exports = function(environment) {
       dynamicScan: 'dynamic_scan',
       apiScan: 'api_scan',
       startApiScan: 'start_api_scan',
-      generateReport: 'generate_report'
-
+      generateReport: 'generate_report',
+      owasps: 'owasps'
     }
   };
 

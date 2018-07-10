@@ -142,14 +142,17 @@ for (let enumName in ENUMS) {
   const enumValues = ENUMS[enumName];
   const choices = [];
   const values = [];
+  const keys = [];
   enumValues['UNKNOWN'] = -1;
   for (let key in enumValues) {
     const value = enumValues[key];
     choices.push({key, value});
     values.push(value);
+    keys.push(key);
   }
   ENUMS[enumName]['CHOICES'] = choices;
   ENUMS[enumName]['VALUES'] = values;
+  ENUMS[enumName]['KEYS'] = keys;
 }
 
 export default ENUMS;

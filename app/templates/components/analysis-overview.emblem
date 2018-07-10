@@ -2,6 +2,6 @@ td
   = analysis.id
 td
   = link-to 'authenticated.security.analysis' analysis.id
-    = analysis.vulnerabilityName
+     = analysis.vulnerability.name
 td
   | #{risk-type analysis.risk}

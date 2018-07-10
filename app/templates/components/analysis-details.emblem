@@ -1,23 +1,20 @@
 .columns
   .column.is-half.margin-auto
     h3
-      | com.appknox.mfva | MFVA | 5603
+      | #{analysisDetails.file.id} | #{analysisDetails.file.name}
     .box
       .columns.border-botton-container
         .column
           h4
-            | Cordova Remote Start Page Manipulation Vulnerability
-        .column.is-one-sixth.content-right
-          h4
-            | High
+            = analysisDetails.vulnerability.name
       .columns
         .column.is-one-third
           h5.bold-font
             | Status
       .columns.border-botton-container
         .column.is-one-third.margin-bottom20
-          = power-select placeholder="Select Status" selected=selectedStatus options=statuses onchange=(action "selectStatus") as |status|
-            = status.key
+          = power-select placeholder="Select Status" selected=analysisDetails.status options=statuses onchange=(action "selectStatus") as |status|
+            = status
       .columns.border-botton-container
         h5.bold-font.margin-left20
           | CVSS Metrics
@@ -25,76 +22,75 @@
           .columns
             .column
               h1
-                | 9.9
+                = analysisDetails.cvssBase
           .columns
             .column
               h3
-                | Medium
+                | #{risk-type analysisDetails.risk}
         .column.is-one-third
-
           .columns
             .column
               | Attack Vector
             .column
-              = power-select selected=selectedAttackVector options=attackVectors onchange=(action "selectAttackVector") as |attackVector|
-                = attackVector.key
+              = power-select selected=analysisDetails.attackVector options=attackVectors onchange=(action "selectAttackVector") as |key|
+                = key
           .columns
             .column
               | Attack Complexity
             .column
-              = power-select selected=selectedAttackComplexity options=attackComplexities onchange=(action "selectAttackComplexity") as |attackComplexity|
-                = attackComplexity.key
+              = power-select selected=analysisDetails.attackComplexity options=attackComplexities onchange=(action "selectAttackComplexity") as |key|
+                = key
           .columns
             .column
               | Privileges Required
             .column
-              = power-select selected=selectedRequiredPrevilege options=requiredPrevileges onchange=(action "selectRequiredPrevilege") as |requiredPrevilege|
-                = requiredPrevilege.key
+              = power-select selected=analysisDetails.privilegesRequired options=requiredPrevileges onchange=(action "selectRequiredPrevilege") as |key|
+                = key
           .columns
             .column
               | User Interaction
             .column
-              = power-select selected=selectedUserInteraction options=userInteractions onchange=(action "selectUserInteraction") as |userInteraction|
-                = userInteraction.key
+              = power-select selected=analysisDetails.userInteraction options=userInteractions onchange=(action "selectUserInteraction") as |key|
+                = key
           .columns
             .column
               | Scope
             .column
-              = power-select selected=selectedScope options=scopes onchange=(action "selectScope") as |scope|
-                = scope.key
+              = power-select selected=analysisDetails.scope options=scopes onchange=(action "selectScope") as |key|
+                = key
           .columns
             .column
               | Confidentiality Impact
             .column
-              = power-select selected=selectedConfidentialityImpact options=confidentialityImpacts onchange=(action "selectConfidentialityImpact") as |confidentialityImpact|
-                = confidentialityImpact.key
+              = power-select selected=analysisDetails.confidentialityImpact options=confidentialityImpacts onchange=(action "selectConfidentialityImpact") as |key|
+                = key
           .columns
             .column
               | Integrity Impact
             .column
-              = power-select selected=selectedIntegrityImpact options=integrityImpacts onchange=(action "selectIntegrityImpact") as |integrityImpact|
-                = integrityImpact.key
+              = power-select selected=analysisDetails.integrityImpact options=integrityImpacts onchange=(action "selectIntegrityImpact") as |key|
+                = key
           .columns
             .column
               | Availability Impact
             .column
-              = power-select selected=selectedAvailabilityImpact options=availabilityImpacts onchange=(action "selectAvailabilityImpact") as |availabilityImpact|
-                = availabilityImpact.key
+              = power-select selected=analysisDetails.availabilityImpact options=availabilityImpacts onchange=(action "selectAvailabilityImpact") as |key|
+                = key
       .columns
         .column.is-one-third
           h5.bold-font
             | OWASP Category
       .columns.border-botton-container
         .column.is-one-third.margin-bottom20
-          = power-select-multiple placeholder="Select OWASP Categories" selected=owasp options=owasps onchange=(action (mut owasp)) as |owasp|
-            = owasp.key
+          = power-select-multiple placeholder="Select OWASP Categories" selected=analysisDetails.owasp options=owasps onchange=(action (mut owasp)) as |key|
+            = key
       .columns
         .column.is-one-third
           h5.bold-font
             | PCI-DSS Risk Category
       .columns.border-botton-container
         .column.margin-bottom20
-          = power-select-multiple placeholder="Select PCI-DSS Risk Category" selected=pci options=pcis onchange=(action (mut pci)) as |pci|
+          = power-select-multiple placeholder="Select PCI-DSS Risk Category" selected=analysisDetails.pcidss options=pcidss onchange=(action (mut pci)) as |pci|
             = pci
       .columns
         .column.is-one-third
@@ -194,6 +190,13 @@
               td
                 div.pointed-cursor
                   = fa-icon "download"
+
+      .columns
+        .column
+          button.is-primary.margin-top30 click="saveAnalysis"
+            | SAVE CHANGES
+
+
 
 = confirm-box isActive=showRemoveFindingConfirmBox title="Are you sure you want to remove this finding" delegate=this
 

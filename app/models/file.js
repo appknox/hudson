@@ -14,7 +14,7 @@ const File = DS.Model.extend(BaseModelMixin, {
   user: DS.belongsTo('user', {inverse:'files'}),
   project: DS.belongsTo('project', {inverse:'files'}),
   dynamicDate: DS.attr('date'),
-  analyses: DS.attr(),
+  analyses: DS.hasMany('analysis', {inverse: 'file'}),
 
   statusText: (function() {
     switch (this.get("dynamicStatus")) {
