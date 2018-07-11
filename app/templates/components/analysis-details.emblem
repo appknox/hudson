@@ -81,8 +81,8 @@
           h5.bold-font
             | OWASP Category
       .columns.border-botton-container
-        .column.is-one-third.margin-bottom20
-          = power-select-multiple placeholder="Select OWASP Categories" selected=analysisDetails.owasp options=owasps onchange=(action (mut owasp)) as |key|
+        .column.margin-bottom20
+          = power-select-multiple placeholder="Select OWASP Categories" selected=analysisDetails.owasp options=owasps onchange=(action "selectOwaspCategory") as |key|
             = key
       .columns
         .column.is-one-third
@@ -90,16 +90,20 @@
             | PCI-DSS Risk Category
       .columns.border-botton-container
         .column.margin-bottom20
-          = power-select-multiple placeholder="Select PCI-DSS Risk Category" selected=analysisDetails.pcidss options=pcidss onchange=(action (mut pci)) as |pci|
-            = pci
+          = power-select-multiple placeholder="Select PCI-DSS Risk Category" selected=analysisDetails.pcidss options=pcidsses onchange=(action "selectPcidssCategory") as |key|
+            = key
       .columns
         .column.is-one-third
           h5.bold-font
             | Override Risk
       .columns.border-botton-container
         .column.margin-bottom20.is-one-third
-          = power-select placeholder="Select Risk" selected=risk options=risks onchange=(action (mut risk)) as |risk|
-            = risk.key
+          = power-select placeholder="Select Risk" selected=analysisDetails.overriddenRisk options=risks onchange=(action "selectOverriddenRisk") as |key|
+            = key
+        .column
+          = input type="checkbox" checked=true
+          | &nbsp; Save to profile &nbsp;
+          | (Current risk override in profile: #{analysisDetails.profileOverriddenRisk})
       .columns
         .column.is-one-third
           h5.bold-font

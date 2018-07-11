@@ -14,7 +14,7 @@ const AnalysisDetailsComponent = Ember.Component.extend({
   findingTitle: "",
   findingDescription: "",
 
-  risks: ENUMS.RISK.CHOICES.slice(0, -1),
+  risks: ENUMS.RISK.KEYS.slice(0, -1),
   scopes: ENUMS.SCOPE.CHOICES.slice(0, -1),
   statuses: ENUMS.ANALYSIS_STATUS.VALUES.slice(0),
   attackVectors: ENUMS.ATTACK_VECTOR.KEYS.slice(0, -1),
@@ -30,11 +30,23 @@ const AnalysisDetailsComponent = Ember.Component.extend({
   }).property(),
 
   owasps: (function() {
-    this.get("store").findAll("owasp");
+    const owasps = [];
+    return this.get("store").findAll("owasp").then((data) => {
+      data.content.forEach((item) => {
+        owasps.push(`${item.id} - ${item.__data.title}`);
+      });
+      return owasps;
+    });
   }).property(),
 
-  pcidss: (function() {
-    this.get("store").findAll("pcidss");
+  pcidsses: (function() {
+    const pcidsses = [];
+    return this.get("store").findAll("pcidss").then((data) => {
+      data.content.forEach((item) => {
+        pcidsses.push(`${item.__data.code} - ${item.__data.title}`);
+      });
+      return pcidsses;
+    });
   }).property(),
 
   allFindings: (function() {
@@ -128,7 +140,15 @@ const AnalysisDetailsComponent = Ember.Component.extend({
     },
 
     selectOwaspCategory(param) {
-      this.set('selectedOwaspCategory', param);
+      this.set('analysisDetails.owasp', param);
+    },
+
+    selectPcidssCategory(param) {
+      this.set('analysisDetails.pcidss', param);
+    },
+
+    selectOverriddenRisk(param) {
+      this.set('analysisDetails.overriddenRisk', param);
     },
 
     addFinding() {
@@ -177,8 +197,8 @@ const AnalysisDetailsComponent = Ember.Component.extend({
       const availabilityImpact = this.get("analysisDetails.availabilityImpact");
       const owasp = this.get("analysisDetails.owasp");
       const pcidss = this.get("analysisDetails.pcidss");
+      const overriddenRisk = this.get("analysisDetails.overriddenRisk");
       const findings = this.get("analysisDetails.findings");
-      debugger
     }
 
   }
