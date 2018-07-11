@@ -1,5 +1,5 @@
 .columns
-  .column
+  .column.is-half.margin-auto
     .box.margin-top10
       .margin-auto
         h3

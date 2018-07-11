@@ -6,6 +6,9 @@
     li class=downloadReportClass click="displayDownloadReport"
       = link-to 'authenticated.security.downloadreport'
         | Download Report
+    li class=downloadAppClass click="displayDownloadApp"
+      = link-to 'authenticated.security.downloadapp'
+        | Download App
     li class=purgeAnalysisClass click="displayPurgeAnalysis"
       = link-to 'authenticated.security.purgeanalysis'
         | Purge API Analyses

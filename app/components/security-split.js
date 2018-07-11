@@ -8,7 +8,7 @@ import Ember from 'ember';
 const SecuritySplitComponent = Ember.Component.extend({
 
   isGenerateReportClass: true,
-  isUploadReportClass: false,
+  isDownloadAppClass: false,
   isDowloadReportClass: false,
   isSearchClass: false,
   isPurgeAnalysisClass: false,
@@ -19,8 +19,8 @@ const SecuritySplitComponent = Ember.Component.extend({
     }
   }),
 
-  uploadReportClass: Ember.computed("isUploadReportClass", function() {
-    if (this.get('isUploadReportClass')) {
+  downloadAppClass: Ember.computed("isDownloadAppClass", function() {
+    if (this.get('isDownloadAppClass')) {
       return 'is-active';
     }
   }),
@@ -46,15 +46,15 @@ const SecuritySplitComponent = Ember.Component.extend({
   actions: {
     displayGenerateReport() {
       this.set("isGenerateReportClass", true);
-      this.set("isUploadReportClass", false);
+      this.set("isDownloadAppClass", false);
       this.set("isDowloadReportClass", false);
       this.set("isSearchClass", false);
       return this.set("isPurgeAnalysisClass", false);
     },
 
-    displayUploadReport() {
+    displayDownloadApp() {
       this.set("isGenerateReportClass", false);
-      this.set("isUploadReportClass", true);
+      this.set("isDownloadAppClass", true);
       this.set("isDowloadReportClass", false);
       this.set("isSearchClass", false);
       return this.set("isPurgeAnalysisClass", false);
@@ -62,7 +62,7 @@ const SecuritySplitComponent = Ember.Component.extend({
 
     displayDownloadReport() {
       this.set("isGenerateReportClass", false);
-      this.set("isUploadReportClass", false);
+      this.set("isDownloadAppClass", false);
       this.set("isDowloadReportClass", true);
       this.set("isSearchClass", false);
       return this.set("isPurgeAnalysisClass", false);
@@ -70,7 +70,7 @@ const SecuritySplitComponent = Ember.Component.extend({
 
     displaySearch() {
       this.set("isGenerateReportClass", false);
-      this.set("isUploadReportClass", false);
+      this.set("isDownloadAppClass", false);
       this.set("isDowloadReportClass", false);
       this.set("isSearchClass", true);
       return this.set("isPurgeAnalysisClass", false);
@@ -78,7 +78,7 @@ const SecuritySplitComponent = Ember.Component.extend({
 
     displayPurgeAnalysis() {
       this.set("isGenerateReportClass", false);
-      this.set("isUploadReportClass", false);
+      this.set("isDownloadAppClass", false);
       this.set("isDowloadReportClass", false);
       this.set("isSearchClass", false);
       return this.set("isPurgeAnalysisClass", true);
