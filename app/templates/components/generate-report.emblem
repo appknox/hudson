@@ -1,12 +1,12 @@
 .columns
-  .column.is-half.margin-auto
+  .column.margin-auto.box-width
     .box.margin-top10
       h3
         | Generate Report
       form.input-form
         p.control
-          = input class="form-control input" id="file-number" placeholder="Enter the file number" type="text" value=fileNumber
+          = input class="form-control input" placeholder="Enter the file number" type="text" value=fileNumber
         p.control
-          = input class="form-control input" id="email-ids" placeholder="Enter the Email IDs" type="email" value=emailIds
+          = input class="form-control input" placeholder="Enter the Email IDs" type="email" value=emailIds
         button.is-primary click="generateReport"
           | Generate Report

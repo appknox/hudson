@@ -5,7 +5,17 @@ const FileActionsComponent = Ember.Component.extend({
   fileDetails: (function() {
     const fileId = this.get("file.fileId");
     return this.get("store").findRecord("file", fileId);
-  }).property()
+  }).property(),
+
+  actions: {
+    openGenerateReportModal() {
+      this.set("showGenerateReportModal", true);
+    },
+
+    openDownloadReportModal() {
+      this.set("showDownloadReportModal", true);
+    }
+  }
 
 });
 

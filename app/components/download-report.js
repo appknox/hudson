@@ -5,7 +5,7 @@ const DownloadReportComponent = Ember.Component.extend({
 
   actions: {
     downloadReport() {
-      const fileId = this.$('#file-number').val();
+      const fileId = this.get("fileNumber");
       if (Ember.isEmpty(fileId)) {
         return this.get("notify").error("Please enter the File ID");
       }

@@ -5,8 +5,8 @@ const GenerateReportComponent = Ember.Component.extend({
 
   actions: {
     generateReport() {
-      const fileId = this.$('#file-number').val();
-      const emailIds = this.$('#email-ids').val();
+      const fileId = this.get("fileNumber");
+      const emailIds = this.get("emailIds");
       if (Ember.isEmpty(fileId) || Ember.isEmpty(emailIds)) {
         return this.get("notify").error("Please enter all the values");
       }
