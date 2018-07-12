@@ -172,7 +172,13 @@ const AnalysisDetailsComponent = Ember.Component.extend({
     },
 
     selectPcidssCategory(param) {
+      const pcidssIDs = [];
       this.set('analysisDetails.pcidss', param);
+      param.forEach((item) => {
+        let id = item.split(" - ")[1];
+        pcidssIDs.push(id);
+        this.set("pcidssIDs", pcidssIDs);
+      });
     },
 
     selectOverriddenRisk(param) {
@@ -216,7 +222,7 @@ const AnalysisDetailsComponent = Ember.Component.extend({
     saveAnalysis() {
       const owasp = this.get("analysisDetails.owasp");
       const scope = this.get("analysisDetails.scope");
-      const pcidss = this.get("analysisDetails.pcidss");
+      const pcidss = this.get("pcidssIDs");
       const status = this.get("analysisDetails.status");
       const analysisId= this.get("analysis.analysisId");
       const findings = this.get("analysisDetails.findings");
