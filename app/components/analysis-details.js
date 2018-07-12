@@ -182,7 +182,7 @@ const AnalysisDetailsComponent = Ember.Component.extend({
     },
 
     selectOverriddenRisk(param) {
-      this.set('analysisDetails.overriddenRisk', param);
+      this.set('analysisDetails.overriddenRisk', param.value);
     },
 
     addFinding() {
@@ -220,12 +220,19 @@ const AnalysisDetailsComponent = Ember.Component.extend({
     },
 
     saveAnalysis() {
+      const risk = this.get("analysisDetails.risk");
       const owasp = this.get("analysisDetails.owasp");
       const scope = this.get("analysisDetails.scope");
       const pcidss = this.get("pcidssIDs");
+      const cvssBase = this.get("analysisDetails.cvssBase");
+      const cvssVector = this.get("analysisDetails.cvssVector");
+      const cvssVersion = this.get("analysisDetails.cvssVersion");
       const status = this.get("analysisDetails.status");
       const analysisId= this.get("analysis.analysisId");
       const findings = this.get("analysisDetails.findings");
+      if (findings) {
+        findings.forEach(finding => delete finding.id);
+      }
       const attackVector = this.get("analysisDetails.attackVector");
       const overriddenRisk = this.get("analysisDetails.overriddenRisk");
       const integrityImpact = this.get("analysisDetails.integrityImpact");
@@ -236,6 +243,7 @@ const AnalysisDetailsComponent = Ember.Component.extend({
       const confidentialityImpact = this.get("analysisDetails.confidentialityImpact");
       const overriddenRiskToProfile = this.get("analysisDetails.overriddenRiskToProfile");
       const data = {
+        risk,
         status,
         owasp,
         pcidss,
@@ -248,10 +256,13 @@ const AnalysisDetailsComponent = Ember.Component.extend({
         confidentiality_impact: confidentialityImpact,
         integrity_impact: integrityImpact,
         overridden_risk: overriddenRisk,
-        overridden_risk_to_profile: overriddenRiskToProfile
+        overridden_risk_to_profile: overriddenRiskToProfile,
+        cvss_base: cvssBase,
+        cvss_vector: cvssVector,
+        cvss_version: cvssVersion
       };
       const url = [ENV.endpoints.analyses, analysisId].join('/');
-      this.get("ajax").put(url, {data})
+      this.get("ajax").put(url,{ namespace: '/hudson-api', data: JSON.stringify(data), contentType: 'application/json' })
       .then(() => {
         this.get("notify").success("Analyses Updated");
       }, () => {

@@ -22,7 +22,9 @@ export default DRFSerializer.extend({
           privilegesRequired: payload.privileges_required,
           availabilityImpact: payload.availability_impact,
           confidentialityImpact: payload.confidentiality_impact,
-          overriddenRiskToProfile: payload.overridden_risk_to_profile
+          overriddenRiskToProfile: payload.overridden_risk_to_profile,
+          cvssVersion: payload.cvss_version,
+          cvssVector: payload.cvss_vector
         },
         relationships: {
           file: {
