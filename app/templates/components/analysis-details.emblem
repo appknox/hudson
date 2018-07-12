@@ -14,7 +14,7 @@
       .columns.border-botton-container
         .column.is-one-third.margin-bottom20
           = power-select placeholder="Select Status" selected=analysisDetails.status options=statuses onchange=(action "selectStatus") as |status|
-            = status
+            | #{analysis-status status}
       .columns.border-botton-container
         h5.bold-font.margin-left20
           | CVSS Metrics
@@ -33,49 +33,49 @@
               | Attack Vector
             .column
               = power-select selected=analysisDetails.attackVector options=attackVectors onchange=(action "selectAttackVector") as |key|
-                = key
+                | #{metric-vector key}
           .columns
             .column
               | Attack Complexity
             .column
               = power-select selected=analysisDetails.attackComplexity options=attackComplexities onchange=(action "selectAttackComplexity") as |key|
-                = key
+                | #{metric-impact key}
           .columns
             .column
               | Privileges Required
             .column
               = power-select selected=analysisDetails.privilegesRequired options=requiredPrevileges onchange=(action "selectRequiredPrevilege") as |key|
-                = key
+                | #{metric-impact key}
           .columns
             .column
               | User Interaction
             .column
               = power-select selected=analysisDetails.userInteraction options=userInteractions onchange=(action "selectUserInteraction") as |key|
-                = key
+                | #{metric-interaction key}
           .columns
             .column
               | Scope
             .column
               = power-select selected=analysisDetails.scope options=scopes onchange=(action "selectScope") as |key|
-                = key
+                | #{metric-scope key}
           .columns
             .column
               | Confidentiality Impact
             .column
               = power-select selected=analysisDetails.confidentialityImpact options=confidentialityImpacts onchange=(action "selectConfidentialityImpact") as |key|
-                = key
+                | #{metric-impact key}
           .columns
             .column
               | Integrity Impact
             .column
               = power-select selected=analysisDetails.integrityImpact options=integrityImpacts onchange=(action "selectIntegrityImpact") as |key|
-                = key
+                | #{metric-impact key}
           .columns
             .column
               | Availability Impact
             .column
               = power-select selected=analysisDetails.availabilityImpact options=availabilityImpacts onchange=(action "selectAvailabilityImpact") as |key|
-                = key
+                | #{metric-impact key}
       .columns
         .column.is-one-third
           h5.bold-font

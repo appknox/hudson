@@ -15,15 +15,15 @@ const AnalysisDetailsComponent = Ember.Component.extend({
   findingDescription: "",
 
   risks: ENUMS.RISK.KEYS.slice(0, -1),
-  scopes: ENUMS.SCOPE.CHOICES.slice(0, -1),
-  statuses: ENUMS.ANALYSIS_STATUS.VALUES.slice(0),
-  attackVectors: ENUMS.ATTACK_VECTOR.KEYS.slice(0, -1),
-  integrityImpacts: ENUMS.INTEGRITY_IMPACT.KEYS.slice(0, -1),
-  userInteractions: ENUMS.USER_INTERACTION.KEYS.slice(0, -1),
-  attackComplexities: ENUMS.ATTACK_COMPLEXITY.KEYS.slice(0, -1),
-  requiredPrevileges: ENUMS.PRIVILEGES_REQUIRED.KEYS.slice(0, -1),
-  availabilityImpacts: ENUMS.AVAILABILITY_IMPACT.KEYS.slice(0, -1),
-  confidentialityImpacts: ENUMS.CONFIDENTIALITY_IMPACT.KEYS.slice(0, -1),
+  scopes: ENUMS.SCOPE.CHOICES.slice(0, 2),
+  statuses: ENUMS.ANALYSIS_STATUS.CHOICES.slice(0),
+  attackVectors: ENUMS.ATTACK_VECTOR.CHOICES.slice(0, 4),
+  integrityImpacts: ENUMS.INTEGRITY_IMPACT.CHOICES.slice(0, 3),
+  userInteractions: ENUMS.USER_INTERACTION.CHOICES.slice(0, 2),
+  attackComplexities: ENUMS.ATTACK_COMPLEXITY.CHOICES.slice(0, 4),
+  requiredPrevileges: ENUMS.PRIVILEGES_REQUIRED.CHOICES.slice(0, 4),
+  availabilityImpacts: ENUMS.AVAILABILITY_IMPACT.CHOICES.slice(0, 3),
+  confidentialityImpacts: ENUMS.CONFIDENTIALITY_IMPACT.CHOICES.slice(0, 3),
 
   analysisDetails: (function() {
     return this.get("store").findRecord('analysis', this.get("analysis.analysisId"));

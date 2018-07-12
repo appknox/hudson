@@ -69,6 +69,12 @@ const ENUMS = {
     HIGH: "H"
   },
 
+  IMPACTS: {
+    NONE: "N",
+    LOW: "L",
+    HIGH: "H"
+  },
+
   USER_INTERACTION: {
     NOT_REQUIRED: "N",
     REQUIRED: "R"
