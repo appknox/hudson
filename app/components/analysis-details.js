@@ -199,6 +199,29 @@ const AnalysisDetailsComponent = Ember.Component.extend({
       const pcidss = this.get("analysisDetails.pcidss");
       const overriddenRisk = this.get("analysisDetails.overriddenRisk");
       const findings = this.get("analysisDetails.findings");
+      const analysisId= this.get("analysis.analysisId");
+      // const data = {
+      //   status
+      //   attackVector
+      //   attackComplexity
+      //   privilegesRequired
+      //   userInteraction
+      //   scope
+      //   owasp
+      //   pcidss
+      //   overriddenRisk
+      //   confidentialityImpact
+      //   integrityImpact
+      //   findings
+      // };
+      const url = [ENV.endpoints.analyses, analysisId].join('/');
+      this.get("ajax").put(url, {data})
+      .then(function(){
+        that.get("notify").success("Analyses Updated");
+      })
+      .catch(function() {
+        that.get("notify").error(error.payload.error);
+      });
     }
 
   }

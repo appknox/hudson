@@ -1,10 +1,4 @@
-/*
- * decaffeinate suggestions:
- * DS101: Remove unnecessary use of Array.from
- * DS102: Remove unnecessary code created because of implicit returns
- * DS207: Consider shorter variations of null checks
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
+// jshint ignore: start
 import Ember from 'ember';
 import Base from 'ember-simple-auth/authenticators/base';
 import ENV from 'hudson/config/environment';
@@ -14,7 +8,7 @@ const b64EncodeUnicode = str =>
   )
 ;
 
-const getB64Token = (user, token)=> b64EncodeUnicode(`${user}:${token}`);
+const getB64Token = (user, token) => b64EncodeUnicode(`${user}:${token}`);
 
 const processData = function(data) {
   data.b64token = getB64Token(data.user_id, data.token);
@@ -30,7 +24,8 @@ const HudsonAuthenticator = Base.extend({
     const lastTransition = authenticatedRoute.get("lastTransition");
     if (lastTransition !== null) {
       return lastTransition.retry();
-    } else {
+    }
+    else {
       const applicationRoute = Ember.getOwner(this).lookup("route:application");
       return applicationRoute.transitionTo(ENV['ember-simple-auth']["routeAfterAuthentication"]);
     }
@@ -38,24 +33,24 @@ const HudsonAuthenticator = Base.extend({
 
   authenticate(identification, password) {
     const ajax = this.get("ajax");
-    const that  = this;
-    return new Ember.RSVP.Promise(function(resolve, reject) {
+    return new Ember.RSVP.Promise((resolve, reject) => {
       const data = {
         username: identification,
         password
       };
-
       const url = ENV['ember-simple-auth']['loginEndPoint'];
-      return ajax.post(url, {data})
-      .then(function(data) {
+      ajax.post(url, {data})
+      .then((data) => {
         data = processData(data);
         resolve(data);
-        return that.resumeTransistion();}).catch(function(error) {
-        for (error of Array.from((error != null ? error.errors : undefined))) {
+        this.resumeTransistion();
+      }, (error) => {
+        this.get("notify").error(error.payload.message, ENV.notifications);
+        for (error of error.errors) {
           if (error.status === "0") {
-            that.get("notify").error("Unable to reach server. Please try after sometime", ENV.notifications);
+            this.get("notify").error("Unable to reach server. Please try after sometime", ENV.notifications);
           }
-          that.get("notify").error("Please enter valid account details", ENV.notifications);
+          this.get("notify").error("Please enter valid account details", ENV.notifications);
         }
         return reject(error);
       });
@@ -64,21 +59,18 @@ const HudsonAuthenticator = Base.extend({
 
   restore(data) {
     const ajax = this.get("ajax");
-    const that  = this;
-    return new Ember.RSVP.Promise(function(resolve, reject) {
+    return new Ember.RSVP.Promise((resolve, reject) => {
       const url = ENV['ember-simple-auth']['checkEndPoint'];
-      return ajax.post(url, {data})
-      .then(function(data) {
+      ajax.post(url, {data})
+      .then((data) => {
         data = processData(data);
         resolve(data);
-        if (Array.from(location.pathname).includes('login')) {
-          return that.resumeTransistion();
-        }}).catch(function(error) {
-        localStorage.clear();
-        for (error of Array.from(error.errors)) {
-          that.get("notify").error(error.detail != null ? error.detail.message : undefined, ENV.notifications);
+        if (location.pathname === '/login') {
+          this.resumeTransistion();
         }
-        return reject(error);
+      }, (error) => {
+        localStorage.clear();
+        location.reload();
       });
     });
   },
@@ -86,19 +78,14 @@ const HudsonAuthenticator = Base.extend({
   invalidate() {
     const ajax = this.get("ajax");
     localStorage.clear();
-    this.set("currentUser", null);
-    const that  = this;
-    return new Ember.RSVP.Promise(function(resolve, reject) {
+    return new Ember.RSVP.Promise((resolve, reject) => {
       const url = ENV['ember-simple-auth']['logoutEndPoint'];
-      return ajax.post(url)
-      .then(function(data){
+      ajax.post(url)
+      .then((data) => {
         resolve(data);
-        return location.reload();}).catch(function(error) {
         location.reload();
-        for (error of Array.from(error.errors)) {
-          that.get("notify").error(error.detail != null ? error.detail.message : undefined, ENV.notifications);
-        }
-        return reject(error);
+      }, (error) => {
+        location.reload();
       });
     });
   }

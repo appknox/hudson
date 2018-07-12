@@ -58,7 +58,8 @@ module.exports = function(environment) {
       apiScan: 'api_scan',
       startApiScan: 'start_api_scan',
       generateReport: 'generate_report',
-      owasps: 'owasps'
+      owasps: 'owasps',
+      analyses: 'analyses'
     }
   };
 
