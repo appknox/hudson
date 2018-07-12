@@ -7,20 +7,22 @@ export default DRFSerializer.extend({
         id: payload.id,
         type: 'analysis',
         attributes: {
-          status: payload.status,
           risk: payload.risk,
+          owasp: payload.owasp,
+          scope: payload.scope,
+          status: payload.status,
+          pcidss: payload.pcidss,
+          findings: payload.findings,
           cvssBase: payload.cvss_base,
           attackVector: payload.attack_vector,
+          overriddenRisk: payload.overridden_risk,
+          userInteraction: payload.user_interaction,
+          integrityImpact: payload.integrity_impact,
           attackComplexity: payload.attack_complexity,
           privilegesRequired: payload.privileges_required,
-          userInteraction: payload.user_interaction,
-          scope: payload.scope,
-          confidentialityImpact: payload.confidentiality_impact,
-          integrityImpact: payload.integrity_impact,
           availabilityImpact: payload.availability_impact,
-          owasp: payload.owasp,
-          pcidss: payload.pcidss,
-          findings: payload.findings
+          confidentialityImpact: payload.confidentiality_impact,
+          overriddenRiskToProfile: payload.overridden_risk_to_profile
         },
         relationships: {
           file: {

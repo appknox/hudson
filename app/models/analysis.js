@@ -1,8 +1,7 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  owasp: DS.attr(),
-  pcidss: DS.attr(),
+
   findings: DS.attr(),
   risk: DS.attr('number'),
   scope: DS.attr('number'),
@@ -11,6 +10,7 @@ export default DS.Model.extend({
   cvssVector: DS.attr('number'),
   cvssVersion: DS.attr('number'),
   attackVector: DS.attr('number'),
+  overriddenRisk: DS.attr('number'),
   integrityImpact: DS.attr('number'),
   userInteraction: DS.attr('number'),
   analiserVersion: DS.attr('number'),
@@ -18,6 +18,9 @@ export default DS.Model.extend({
   privilegesRequired: DS.attr('number'),
   availabilityImpact: DS.attr('number'),
   confidentialityImpact: DS.attr('number'),
+  overriddenRiskToProfile: DS.attr('boolean'),
   vulnerability: DS.belongsTo('vulnerability'),
-  file: DS.belongsTo('file', {inverse: 'analyses'})
+  owasps: DS.hasMany('owasp', {inverse:'analysis'}),
+  file: DS.belongsTo('file', {inverse: 'analyses'}),
+  pcidsses: DS.hasMany('pcidss', {inverse:'analysis'})
 });
