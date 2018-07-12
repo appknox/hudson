@@ -14,7 +14,7 @@ const AnalysisDetailsComponent = Ember.Component.extend({
   findingTitle: "",
   findingDescription: "",
 
-  risks: ENUMS.RISK.KEYS.slice(0, -1),
+  risks: ENUMS.RISK.CHOICES,
   scopes: ENUMS.SCOPE.CHOICES.slice(0, 2),
   statuses: ENUMS.ANALYSIS_STATUS.CHOICES.slice(0),
   attackVectors: ENUMS.ATTACK_VECTOR.CHOICES.slice(0, 4),
@@ -186,20 +186,21 @@ const AnalysisDetailsComponent = Ember.Component.extend({
     },
 
     saveAnalysis() {
+      const owasp = this.get("analysisDetails.owasp");
+      const scope = this.get("analysisDetails.scope");
+      const pcidss = this.get("analysisDetails.pcidss");
       const status = this.get("analysisDetails.status");
+      const analysisId= this.get("analysis.analysisId");
+      const findings = this.get("analysisDetails.findings");
       const attackVector = this.get("analysisDetails.attackVector");
+      const overriddenRisk = this.get("analysisDetails.overriddenRisk");
+      const integrityImpact = this.get("analysisDetails.integrityImpact");
+      const userInteraction = this.get("analysisDetails.userInteraction");
       const attackComplexity = this.get("analysisDetails.attackComplexity");
       const privilegesRequired = this.get("analysisDetails.privilegesRequired");
-      const userInteraction = this.get("analysisDetails.userInteraction");
-      const scope = this.get("analysisDetails.scope");
-      const confidentialityImpact = this.get("analysisDetails.confidentialityImpact");
-      const integrityImpact = this.get("analysisDetails.integrityImpact");
       const availabilityImpact = this.get("analysisDetails.availabilityImpact");
-      const owasp = this.get("analysisDetails.owasp");
-      const pcidss = this.get("analysisDetails.pcidss");
-      const overriddenRisk = this.get("analysisDetails.overriddenRisk");
-      const findings = this.get("analysisDetails.findings");
-      const analysisId= this.get("analysis.analysisId");
+      const confidentialityImpact = this.get("analysisDetails.confidentialityImpact");
+      const overriddenRiskToProfile = this.get("analysisDetails.overriddenRiskToProfile");
       const data = {
         status,
         attackVector,
@@ -210,6 +211,7 @@ const AnalysisDetailsComponent = Ember.Component.extend({
         owasp,
         pcidss,
         overriddenRisk,
+        overriddenRiskToProfile,
         confidentialityImpact,
         integrityImpact,
         findings

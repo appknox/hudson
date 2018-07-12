@@ -99,7 +99,7 @@
       .columns.border-botton-container
         .column.margin-bottom20.is-one-third
           = power-select placeholder="Select Risk" selected=analysisDetails.overriddenRisk options=risks onchange=(action "selectOverriddenRisk") as |key|
-            = key
+            | #{risk-type key}
         .column
           = input type="checkbox" checked=analysisDetails.overriddenRiskToProfile
           | &nbsp; Save to profile &nbsp;
