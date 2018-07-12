@@ -14,7 +14,7 @@ const GenerateReportComponent = Ember.Component.extend({
         file_id: fileId,
         email_ids: emailIds
       };
-      return this.get("ajax").post(ENV.endpoints.generateReport, {data})
+      return this.get("ajax").post(ENV.endpoints.generateReport, { namespace: '/hudson-api', data: JSON.stringify(data), contentType: 'application/json' })
       .then(() => {
         this.get("notify").success("Report Generated and sent to the Email ID(s)");
       }, () => {

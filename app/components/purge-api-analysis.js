@@ -11,7 +11,7 @@ const PurgeApiAnalysisComponent = Ember.Component.extend({
       }
       const data =
         {file_id: fileId};
-      return this.get("ajax").post(ENV.endpoints.purgeAPIAnalyses, {data})
+      return this.get("ajax").post(ENV.endpoints.purgeAPIAnalyses, { namespace: '/hudson-api', data: JSON.stringify(data), contentType: 'application/json' })
       .then((data) => {
         this.get("notify").error("Successfully Purged the Analysis");
       }, () => {

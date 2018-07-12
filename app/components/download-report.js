@@ -13,7 +13,7 @@ const DownloadReportComponent = Ember.Component.extend({
         file_id: fileId,
         submit: "Download"
       };
-      return this.get("ajax").post(ENV.endpoints.downloadReport, {data})
+      return this.get("ajax").post(ENV.endpoints.downloadReport, { namespace: '/hudson-api', data: JSON.stringify(data), contentType: 'application/json' })
       .then(() => {
         this.get("notify").success("Report Downloaded Successfully");
       }, () => {
