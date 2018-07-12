@@ -17,8 +17,8 @@
           .column
             h3
               | List of Analyses
-          .column.content-right
-            = create-analysis
+          / .column.content-right
+          /   = create-analysis
         .columns
           .column
             = analysis-list fileDetails=fileDetails

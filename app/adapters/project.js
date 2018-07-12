@@ -9,8 +9,8 @@ const ProjectAdapter = DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   headers: {
     'Accept': 'application/json'
   },
-  query: function query() {
-    let url = `${this.get('host')}/${this.get('namespace')}/projects`;
+  query: function query(store, type, query) {
+    let url = `${this.get('host')}/${this.get('namespace')}/projects?limit=${query.limit}&offset=${query.offset}&query=${query.query}`;
     return this.ajax(url, 'GET');
   }
 });
