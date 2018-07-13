@@ -11,7 +11,8 @@ export default DRFSerializer.extend({
             packageName: item.package_name
           }
         };
-      })
+      }),
+      meta: {total: payload.count}
     };
   }
 });
