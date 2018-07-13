@@ -178,21 +178,22 @@
                 | Attachment ID
               th colspan="2"
                 | Actions
-            tr
-              td
-                | a6ed0325-5917-40f1-ac87-c4f5a2c5d4f8_2.png
-              td
-                | March 22, 2018, 9:16 a.m.
-              td
-                | 1322 - jagadeesh
-              td
-                | 11
-              td
-                div.pointed-cursor click="'openRemoveFileConfirmBox' finding.id"
-                  = fa-icon "trash-o"
-              td
-                div.pointed-cursor
-                  = fa-icon "download"
+            each analysisDetails.attachments as |attachment|
+              tr
+                td
+                  = attachment.name
+                td
+                  = attachment.created_on
+                td
+                  = attachment.user
+                td
+                  = attachment.id
+                td
+                  div.pointed-cursor click="'openRemoveFileConfirmBox' attachment.id"
+                    = fa-icon "trash-o"
+                td
+                  div.pointed-cursor click="'downloadAttachment' attachment.id"
+                    = fa-icon "download"
 
       .columns
         .column

@@ -219,6 +219,18 @@ const AnalysisDetailsComponent = Ember.Component.extend({
       this.set("showRemoveFileConfirmBox", true);
     },
 
+    downloadAttachment(id) {
+      const url = [ENV.endpoints.downloadAttachment, id].join('/');
+      return this.get("ajax").post(url, {namespace: 'hudson-api'})
+      .then((data) => {
+        window.location = data.url;
+      }, (error) => {
+        for (error of error.errors) {
+          this.get("notify").error(error.detail.error);
+        }
+      })
+    },
+
     saveAnalysis() {
       const risk = this.get("analysisDetails.risk");
       const owasp = this.get("analysisDetails.owasp");

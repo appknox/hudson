@@ -13,6 +13,7 @@ export default DRFSerializer.extend({
           status: payload.status,
           pcidss: payload.pcidss,
           findings: payload.findings,
+          attachments: payload.attachments,
           cvssBase: payload.cvss_base,
           attackVector: payload.attack_vector,
           overriddenRisk: payload.overridden_risk,
