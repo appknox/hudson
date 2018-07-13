@@ -14,11 +14,15 @@ const GenerateReportComponent = Ember.Component.extend({
         file_id: fileId,
         email_ids: emailIds
       };
-      return this.get("ajax").post(ENV.endpoints.generateReport, { namespace: '/hudson-api', data: JSON.stringify(data), contentType: 'application/json' })
+      return this.get("ajax").post(ENV.endpoints.generateReport, { namespace: '/hudson-api', data})
       .then(() => {
         this.get("notify").success("Report Generated and sent to the Email ID(s)");
-      }, () => {
-        this.get("notify").error("Sorry something went wrong, please try again");
+        this.set("fileNumber", "");
+        this.set("emailIds", "");
+      }, (error) => {
+        for (error of error.errors) {
+          this.get("notify").error(error.detail.error);
+        }
       })
     }
   }
