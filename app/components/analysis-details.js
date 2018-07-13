@@ -7,12 +7,16 @@ const { get, set } = Ember;
 
 const isEmpty = inputValue=> Ember.isEmpty(inputValue);
 
+const {inject: {service}} = Ember;
+
 const AnalysisDetailsComponent = Ember.Component.extend({
 
   findingId: 0,
   findings: [],
   findingTitle: "",
   findingDescription: "",
+
+  session: service(),
 
   risks: ENUMS.RISK.CHOICES,
   scopes: ENUMS.SCOPE.CHOICES.slice(0, 2),
@@ -74,29 +78,6 @@ const AnalysisDetailsComponent = Ember.Component.extend({
     return allFinding.id !== deletedFinding;
   }),
 
-  uploadPhoto: task(function * (file) {
-    let product = this.modelFor('product');
-    let photo = this.store.createRecord('photo', {
-      product,
-      filename: get(file, 'name'),
-      filesize: get(file, 'size')
-    });
-
-    try {
-      file.readAsDataURL().then(function (url) {
-        if (get(photo, 'url') == null) {
-          set(photo, 'url', url);
-        }
-      });
-
-      let response = yield file.upload('/api/images/upload');
-      set(photo, 'url', response.headers.Location);
-      yield photo.save();
-    } catch (e) {
-      photo.rollback();
-    }
-  }).maxConcurrency(3).enqueue(),
-
   updateCVSSScore() {
     const attackVector = this.get("analysisDetails.attackVector");
     const attackComplexity = this.get("analysisDetails.attackComplexity");
@@ -119,8 +100,56 @@ const AnalysisDetailsComponent = Ember.Component.extend({
 
   actions: {
 
+    deleteFile(id) {
+      const url = [ENV.endpoints.deleteAttachment, id].join('/');
+      this.get("ajax").delete(url, {namespace: 'hudson-api'})
+      .then(() => {
+        this.get("notify").success("File Deleted Successfully");
+      }, () => {
+        this.get("notify").error("Sorry something went wrong, please try again");
+      })
+
+    },
+
     uploadImage(file) {
-      get(this, 'uploadPhoto').perform(file);
+      this.set("isUploading", true);
+      const fileName = file.blob.name;
+      const userId = this.get("session.data.authenticated.user_id");
+      const data = {
+        file_name: fileName
+      };
+      this.get("ajax").post(ENV.endpoints.uploadFile,{namespace: 'hudson-api', data})
+      .then((fileData) => {
+        const analysisId= this.get("analysis.analysisId");
+        const fileDetailsData = {
+          file_uuid: fileData.file_uuid,
+          file_name: fileName,
+          user_id: userId,
+          object_id: analysisId,
+          content_type: "analysis"
+        }
+        this.get("ajax").post(ENV.endpoints.uploadedAttachment,{namespace: 'hudson-api', data: fileDetailsData})
+        .then((data) => {
+          const attachments = this.get("analysisDetails.attachments");
+          const attachment = {
+            id: data.id,
+            name: data.name,
+            user: data.user,
+            created_on: data.created_on,
+            file_key: data.file_key
+          };
+          attachments.push(attachment);
+          this.set("analysisDetails.attachments", attachments);
+          this.set("isUploading", false);
+
+        }, () => {
+          this.set("isUploading", false);
+          this.get("notify").error("Sorry something went wrong, please try again");
+        })
+      }, () => {
+        this.set("isUploading", false);
+        this.get("notify").error("Sorry something went wrong, please try again");
+      })
     },
 
     selectStatus(param) {

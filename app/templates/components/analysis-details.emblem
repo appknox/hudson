@@ -157,8 +157,8 @@
           form
             p.control.is-fullwidth
               = file-upload name="photos" accept="image/*" onfileadd=(action "uploadImage") as |queue|
-                a class="button is-primary"
-                  if queue.files.length
+                a class="button is-primary" disabled=isUploading
+                  if isUploading
                     | Uploading...
                   else
                     | Upload file
@@ -189,7 +189,7 @@
                 td
                   = attachment.id
                 td
-                  div.pointed-cursor click="'openRemoveFileConfirmBox' attachment.id"
+                  div.pointed-cursor click="'deleteFile' attachment.id"
                     = fa-icon "trash-o"
                 td
                   div.pointed-cursor click="'downloadAttachment' attachment.id"

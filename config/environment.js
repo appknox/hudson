@@ -58,8 +58,12 @@ module.exports = function(environment) {
       apiScan: 'api_scan',
       startApiScan: 'start_api_scan',
       generateReport: 'generate_report',
+      downloadAttachment: 'download_attachment',
       owasps: 'owasps',
-      analyses: 'analyses'
+      analyses: 'analyses',
+      uploadFile: 'signed_attachment_upload_url',
+      uploadedAttachment: 'uploaded_attachment',
+      deleteAttachment: 'delete_attachment',
     }
   };
 
