@@ -17,11 +17,6 @@ const AuthenticatedRoute = Ember.Route.extend(AuthenticatedRouteMixin, {
   session: service(),
   realtime: service(),
 
-  beforeModel(transition){
-    this.set("lastTransition", transition);
-    return this._super(transition);
-  },
-
   afterModel() {
     let allEvents;
     this.get('notify').setDefaultAutoClear(ENV.notifications.autoClear);

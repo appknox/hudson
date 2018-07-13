@@ -1,7 +1,4 @@
 .columns
-  .column.is-one-quarter.margin-auto
-    = input class="input search-input" placeholder="Search Project" value=query
-.columns
   .column.table-container
     table.users-list-table
       tr

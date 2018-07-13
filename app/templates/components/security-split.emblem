@@ -1,19 +1,14 @@
 .tabs.is-medium.is-boxed.is-centered
   ul
-    li class=generateReportClass click="displayGenerateReport"
-      = link-to 'authenticated.security.generatereport'
-        | Generate Report
-    li class=downloadReportClass click="displayDownloadReport"
-      = link-to 'authenticated.security.downloadreport'
-        | Download Report
+    li class=searchClass click="displaySearch"
+      = link-to 'authenticated.security.projects'
+        | Search
     li class=downloadAppClass click="displayDownloadApp"
       = link-to 'authenticated.security.downloadapp'
         | Download App
     li class=purgeAnalysisClass click="displayPurgeAnalysis"
       = link-to 'authenticated.security.purgeanalysis'
         | Purge API Analyses
-    li class=searchClass click="displaySearch"
-      = link-to 'authenticated.security.projects'
-        | Search
+
 
 = outlet
