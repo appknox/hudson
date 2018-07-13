@@ -10,14 +10,15 @@ const DownloadReportComponent = Ember.Component.extend({
         return this.get("notify").error("Please enter the File ID");
       }
       const data = {
-        file_id: fileId,
-        submit: "Download"
+        file_id: fileId
       };
-      return this.get("ajax").post(ENV.endpoints.downloadReport, { namespace: '/hudson-api', data: JSON.stringify(data), contentType: 'application/json' })
-      .then(() => {
-        this.get("notify").success("Report Downloaded Successfully");
-      }, () => {
-        this.get("notify").error("Sorry something went wrong, please try again");
+      return this.get("ajax").post(ENV.endpoints.downloadReport, { namespace: '/hudson-api', data})
+      .then((data) => {
+        window.location = data.url;
+      }, (error) => {
+        for (error of error.errors) {
+          this.get("notify").error(error.detail.error);
+        }
       })
     }
   }
