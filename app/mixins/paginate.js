@@ -11,6 +11,7 @@ const PaginateMixin = Ember.Mixin.create({
 
   offset: 0,
   meta: null,
+  next: "",
   version: 0,
   extraQueryStrings: "",
   limit: ENV.paginate.perPageLimit,
@@ -43,7 +44,8 @@ const PaginateMixin = Ember.Mixin.create({
     const that = this;
     const query = {
       limit: this.get("limit"),
-      offset: this.get("offset")
+      offset: this.get("offset"),
+      next: this.get("next")
     };
     const extraQueryStrings = this.get("extraQueryStrings");
     if (!Ember.isEmpty(extraQueryStrings)) {
@@ -55,7 +57,10 @@ const PaginateMixin = Ember.Mixin.create({
     }
     const targetObject = this.get("targetObject");
     const objects = this.get('store').query(targetObject, query);
-    objects.then(result => that.set("meta", result.meta));
+    objects.then((result) => {
+      that.set("meta", result.meta);
+      that.set("next", result.meta.next);
+    });
       // that.set "meta", total: 200
     return objects;
   }).property("version"),

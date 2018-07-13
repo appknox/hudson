@@ -104,6 +104,9 @@ const AnalysisDetailsComponent = Ember.Component.extend({
       const url = [ENV.endpoints.deleteAttachment, id].join('/');
       this.get("ajax").delete(url, {namespace: 'hudson-api'})
       .then(() => {
+        const attachments = this.get("analysisDetails.attachments");
+        attachments.filter((attachment) => attachment.id !== id);
+        this.set("analysisDetails.attachments", attachments);
         this.get("notify").success("File Deleted Successfully");
       }, () => {
         this.get("notify").error("Sorry something went wrong, please try again");

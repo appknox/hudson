@@ -11,6 +11,9 @@ const ProjectAdapter = DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   },
   query: function query(store, type, query) {
     let url = `${this.get('host')}/${this.get('namespace')}/projects?limit=${query.limit}&offset=${query.offset}&query=${query.query}`;
+    if(query.next) {
+      url = query.next;
+    }
     return this.ajax(url, 'GET');
   }
 });

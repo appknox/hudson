@@ -12,7 +12,7 @@ export default DRFSerializer.extend({
           }
         };
       }),
-      meta: {total: payload.count}
+      meta: {total: payload.count, next: payload.next}
     };
   }
 });
