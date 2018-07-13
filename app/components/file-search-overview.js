@@ -9,14 +9,15 @@ const FileSearchOverviewComponent = Ember.Component.extend({
     downloadApp() {
       const fileId = this.get("file.id");
       const data = {
-        file_id: fileId,
-        submit: "Download"
+        file_id: fileId
       };
-      return this.get("ajax").post(ENV.endpoints.downloadApp, {data})
-      .then(() => {
-        this.get("notify").success("App Downloaded Successfully");
-      }, () => {
-        this.get("notify").error("Sorry something went wrong, please try again");
+      return this.get("ajax").post(ENV.endpoints.downloadApp, { namespace: '/hudson-api', data})
+      .then((data) => {
+        window.location = data.url;
+      }, (error) => {
+        for (error of error.errors) {
+          this.get("notify").error(error.detail.error);
+        }
       })
     }
   }
