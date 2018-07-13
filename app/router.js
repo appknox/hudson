@@ -12,7 +12,7 @@ Router.map(function() {
   this.route('login');
   this.route('recover');
   this.route('authenticated', {path: '/'}, function() {
-    this.route('index', {path: '/stat'});
+    this.route('index', {path: '/'});
     this.route('users', {path: '/users'});
     this.route('user', {path: '/user/:userId'});
     this.route('pricings', {path: '/pricings'});
@@ -26,13 +26,11 @@ Router.map(function() {
     this.route('scans', {path: '/scans'});
     this.route('analyses', {path: '/analyses'});
     this.route('apps', {path: '/apps'});
-    this.route('security', {path: '/'}, function() {
+    this.route('security', {path: '/security'}, function() {
       this.route('users');
       this.route('projects', {path: '/project-list'});
       this.route('files', {path: '/:projectId/files'});
       this.route('file', {path: '/file/:fileId'});
-      this.route('generatereport');
-      this.route('uploadreport');
       this.route('downloadreport');
       this.route('purgeanalysis');
       this.route('downloadapp');
