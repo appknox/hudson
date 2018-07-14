@@ -20,8 +20,8 @@ export default DS.Model.extend({
   confidentialityImpact: DS.attr('number'),
   overriddenRiskToProfile: DS.attr('boolean'),
   vulnerability: DS.belongsTo('vulnerability'),
-  owasps: DS.hasMany('owasp', {inverse:'analysis'}),
+  owasp: DS.hasMany('owasp', {inverse:'analysis'}),
   file: DS.belongsTo('file', {inverse: 'analyses'}),
-  pcidsses: DS.hasMany('pcidss', {inverse:'analysis'}),
+  pcidss: DS.hasMany('pcidss', {inverse:'analysis'}),
   attachments: DS.attr()
 });

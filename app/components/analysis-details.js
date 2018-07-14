@@ -34,23 +34,11 @@ const AnalysisDetailsComponent = Ember.Component.extend({
   }).property(),
 
   owasps: (function() {
-    const owasps = [];
-    return this.get("store").findAll("owasp").then((data) => {
-      data.content.forEach((item) => {
-        owasps.push(item.id);
-      });
-      return owasps;
-    });
+    return this.get("store").findAll("owasp")
   }).property(),
 
   pcidsses: (function() {
-    const pcidsses = [];
-    return this.get("store").findAll("pcidss").then((data) => {
-      data.content.forEach((item) => {
-        pcidsses.push(`${item.id} - ${item.__data.code} - ${item.__data.title} - ${item.__data.description}`);
-      });
-      return pcidsses;
-    });
+    return this.get("store").findAll("pcidss")
   }).property(),
 
   allFindings: (function() {

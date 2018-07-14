@@ -12,7 +12,7 @@ const FileSearchListComponent = Ember.Component.extend(PaginateMixin, {
   query: "",
   targetObject: "file",
 
-  sortProperties: ["id"],
+  sortProperties: ["-id"],
 
   newFileObserver: Ember.observer("realtime.FileCount", function() {
     return this.incrementProperty("version");

@@ -5,7 +5,7 @@ const Owasp = DS.Model.extend({
   title: DS.attr(),
   description: DS.attr(),
   year: DS.attr(),
-  analysis: DS.belongsTo('analysis', {inverse: 'owasps'}),
+  analysis: DS.belongsTo('analysis', {inverse: 'owasp'}),
 });
 
 export default Owasp;
