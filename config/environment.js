@@ -1,6 +1,16 @@
 /* jshint node: true */
 
+var url = require('url');
+
 module.exports = function(environment) {
+  var devicefarmEnv = process.env.HUDSON_DEVICEFARM_URL || "wss://devicefarm.appknox.com";
+  var deviceFarmWebsockifyHost = url.parse(devicefarmEnv);
+  var deviceFarmSsl = deviceFarmWebsockifyHost.protocol == "wss:";
+  var deviceFarmPort = deviceFarmWebsockifyHost.port || (deviceFarmSsl ? 443:80);
+  var deviceFarmHost = deviceFarmWebsockifyHost.hostname;
+  var host = process.env.HUDSON_API_HOST || 'https://api.appknox.com';
+  var socketPath = process.env.HUDSON_API_SOCKET_PATH || 'https://socket.appknox.com';
+
   var ENV = {
     rootURL: '/',
     locationType: 'auto',
@@ -25,7 +35,7 @@ module.exports = function(environment) {
       }
     },
     namespace: "hudson",
-    host: "https://api.appknox.com",
+    host: host,
     'ember-cli-mirage': {
       enabled: false
     },

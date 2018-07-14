@@ -12,7 +12,7 @@ const ProjectSearchListComponent = Ember.Component.extend(PaginateMixin, {
   query: "",
   targetObject: "project",
 
-  sortProperties: ["id"],
+  sortProperties: ["-id"],
 
   newProjectObserver: Ember.observer("realtime.ProjectCount", function() {
     return this.incrementProperty("version");
