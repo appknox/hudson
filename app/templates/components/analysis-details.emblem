@@ -22,7 +22,7 @@
           .columns
             .column
               h1
-                = analysisDetails.cvssBase
+                = analysisDetails.cvss_base
           .columns
             .column
               h3
@@ -32,25 +32,25 @@
             .column
               | Attack Vector
             .column
-              = power-select selected=analysisDetails.attackVector options=attackVectors onchange=(action "selectAttackVector") as |key|
+              = power-select selected=analysisDetails.attack_vector options=attackVectors onchange=(action "selectAttackVector") as |key|
                 | #{metric-vector key}
           .columns
             .column
               | Attack Complexity
             .column
-              = power-select selected=analysisDetails.attackComplexity options=attackComplexities onchange=(action "selectAttackComplexity") as |key|
+              = power-select selected=analysisDetails.attack_complexity options=attackComplexities onchange=(action "selectAttackComplexity") as |key|
                 | #{metric-impact key}
           .columns
             .column
               | Privileges Required
             .column
-              = power-select selected=analysisDetails.privilegesRequired options=requiredPrevileges onchange=(action "selectRequiredPrevilege") as |key|
+              = power-select selected=analysisDetails.privileges_required options=requiredPrevileges onchange=(action "selectRequiredPrevilege") as |key|
                 | #{metric-impact key}
           .columns
             .column
               | User Interaction
             .column
-              = power-select selected=analysisDetails.userInteraction options=userInteractions onchange=(action "selectUserInteraction") as |key|
+              = power-select selected=analysisDetails.user_interaction options=userInteractions onchange=(action "selectUserInteraction") as |key|
                 | #{metric-interaction key}
           .columns
             .column
@@ -62,19 +62,19 @@
             .column
               | Confidentiality Impact
             .column
-              = power-select selected=analysisDetails.confidentialityImpact options=confidentialityImpacts onchange=(action "selectConfidentialityImpact") as |key|
+              = power-select selected=analysisDetails.confidentiality_impact options=confidentialityImpacts onchange=(action "selectConfidentialityImpact") as |key|
                 | #{metric-impact key}
           .columns
             .column
               | Integrity Impact
             .column
-              = power-select selected=analysisDetails.integrityImpact options=integrityImpacts onchange=(action "selectIntegrityImpact") as |key|
+              = power-select selected=analysisDetails.integrity_impact options=integrityImpacts onchange=(action "selectIntegrityImpact") as |key|
                 | #{metric-impact key}
           .columns
             .column
               | Availability Impact
             .column
-              = power-select selected=analysisDetails.availabilityImpact options=availabilityImpacts onchange=(action "selectAvailabilityImpact") as |key|
+              = power-select selected=analysisDetails.availability_impact options=availabilityImpacts onchange=(action "selectAvailabilityImpact") as |key|
                 | #{metric-impact key}
       .columns
         .column.is-one-third

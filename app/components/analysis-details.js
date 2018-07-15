@@ -67,19 +67,19 @@ const AnalysisDetailsComponent = Ember.Component.extend({
   }),
 
   updateCVSSScore() {
-    const attackVector = this.get("analysisDetails.attackVector");
-    const attackComplexity = this.get("analysisDetails.attackComplexity");
-    const privilegesRequired = this.get("analysisDetails.privilegesRequired");
-    const userInteraction = this.get("analysisDetails.userInteraction");
+    const attackVector = this.get("analysisDetails.attack_vector");
+    const attackComplexity = this.get("analysisDetails.attack_complexity");
+    const privilegesRequired = this.get("analysisDetails.privileges_required");
+    const userInteraction = this.get("analysisDetails.user_interaction");
     const scope = this.get("analysisDetails.scope");
-    const confidentialityImpact = this.get("analysisDetails.confidentialityImpact");
-    const integrityImpact = this.get("analysisDetails.integrityImpact");
-    const availabilityImpact = this.get("analysisDetails.availabilityImpact");
+    const confidentialityImpact = this.get("analysisDetails.confidentiality_impact");
+    const integrityImpact = this.get("analysisDetails.integrity_impact");
+    const availabilityImpact = this.get("analysisDetails.availability_impact");
     const vector =`CVSS:3.0/AV:${attackVector}/AC:${attackComplexity}/PR:${privilegesRequired}/UI:${userInteraction}/S:${scope}/C:${confidentialityImpact}/I:${integrityImpact}/A:${availabilityImpact}`;
     const url = `cvss?vector=${vector}`;
     this.get("ajax").request(url)
     .then((data) => {
-      this.set("analysisDetails.cvssBase", data.cvss_base);
+      this.set("analysisDetails.cvss_base", data.cvss_base);
       this.set("analysisDetails.risk", data.risk);
     }, () => {
       this.get("notify").error("Sorry something went wrong, please try again");
@@ -148,22 +148,22 @@ const AnalysisDetailsComponent = Ember.Component.extend({
     },
 
     selectAttackVector(param) {
-      this.set('analysisDetails.attackVector', param.value);
+      this.set('analysisDetails.attack_vector', param.value);
       this.updateCVSSScore();
     },
 
     selectAttackComplexity(param) {
-      this.set('analysisDetails.attackComplexity', param.value);
+      this.set('analysisDetails.attack_complexity', param.value);
       this.updateCVSSScore();
     },
 
     selectRequiredPrevilege(param) {
-      this.set('analysisDetails.privilegesRequired', param.value);
+      this.set('analysisDetails.privileges_required', param.value);
       this.updateCVSSScore();
     },
 
     selectUserInteraction(param) {
-      this.set('analysisDetails.userInteraction', param.value);
+      this.set('analysisDetails.user_interaction', param.value);
       this.updateCVSSScore();
     },
 
@@ -173,17 +173,17 @@ const AnalysisDetailsComponent = Ember.Component.extend({
     },
 
     selectConfidentialityImpact(param) {
-      this.set('analysisDetails.confidentialityImpact', param.value);
+      this.set('analysisDetails.confidentiality_impact', param.value);
       this.updateCVSSScore();
     },
 
     selectIntegrityImpact(param) {
-      this.set('analysisDetails.integrityImpact', param.value);
+      this.set('analysisDetails.integrity_impact', param.value);
       this.updateCVSSScore();
     },
 
     selectAvailabilityImpact(param) {
-      this.set('analysisDetails.availabilityImpact', param.value);
+      this.set('analysisDetails.availability_impact', param.value);
       this.updateCVSSScore();
     },
 
@@ -192,17 +192,11 @@ const AnalysisDetailsComponent = Ember.Component.extend({
     },
 
     selectPcidssCategory(param) {
-      const pcidssIDs = [];
       this.set('analysisDetails.pcidss', param);
-      param.forEach((item) => {
-        let id = item.split(" - ")[1];
-        pcidssIDs.push(id);
-        this.set("pcidssIDs", pcidssIDs);
-      });
     },
 
     selectOverriddenRisk(param) {
-      this.set('analysisDetails.overriddenRisk', param.value);
+      this.set('analysisDetails.overridden_risk', param.value);
     },
 
     addFinding() {
@@ -254,44 +248,41 @@ const AnalysisDetailsComponent = Ember.Component.extend({
     saveAnalysis() {
       const risk = this.get("analysisDetails.risk");
       const owasp = this.get("analysisDetails.owasp");
-      const scope = this.get("analysisDetails.scope");
-      const pcidss = this.get("pcidssIDs");
-      const cvssBase = this.get("analysisDetails.cvssBase");
-      const cvssVector = this.get("analysisDetails.cvssVector");
-      const cvssVersion = this.get("analysisDetails.cvssVersion");
+      const pcidss = this.get("analysisDetails.pcidss");
       const status = this.get("analysisDetails.status");
       const analysisId= this.get("analysis.analysisId");
       const findings = this.get("analysisDetails.findings");
+      const overriddenRisk = this.get("analysisDetails.overridden_risk");
+      const overriddenRiskToProfile = this.get("analysisDetails.overridden_risk_to_profile");
       if (findings) {
         findings.forEach(finding => delete finding.id);
       }
-      const attackVector = this.get("analysisDetails.attackVector");
-      const overriddenRisk = this.get("analysisDetails.overriddenRisk");
-      const integrityImpact = this.get("analysisDetails.integrityImpact");
-      const userInteraction = this.get("analysisDetails.userInteraction");
-      const attackComplexity = this.get("analysisDetails.attackComplexity");
-      const privilegesRequired = this.get("analysisDetails.privilegesRequired");
-      const availabilityImpact = this.get("analysisDetails.availabilityImpact");
-      const confidentialityImpact = this.get("analysisDetails.confidentialityImpact");
-      const overriddenRiskToProfile = this.get("analysisDetails.overriddenRiskToProfile");
+      const attackVector = this.get("analysisDetails.attack_vector");
+      const attackComplexity = this.get("analysisDetails.attack_complexity");
+      const privilegesRequired = this.get("analysisDetails.privileges_required");
+      const userInteraction = this.get("analysisDetails.user_interaction");
+      const scope = this.get("analysisDetails.scope");
+      const confidentialityImpact = this.get("analysisDetails.confidentiality_impact");
+      const integrityImpact = this.get("analysisDetails.integrity_impact");
+      const availabilityImpact = this.get("analysisDetails.availability_impact");
+      const cvssVector = this.get("analysisDetails.cvss_vector");
       const data = {
         risk,
         status,
-        owasp,
-        pcidss,
+        owasp: owasp.map(a=>a.get('id')),
+        pcidss: pcidss.map(a=>a.get('id')),
         findings,
-        scope,
+        overridden_risk: overriddenRisk,
+        overridden_risk_to_profile: overriddenRiskToProfile,
+        cvss_vector: cvssVector,
         attack_vector: attackVector,
         attack_complexity: attackComplexity,
         privileges_required: privilegesRequired,
         user_interaction: userInteraction,
+        scope,
         confidentiality_impact: confidentialityImpact,
         integrity_impact: integrityImpact,
-        overridden_risk: overriddenRisk,
-        overridden_risk_to_profile: overriddenRiskToProfile,
-        cvss_base: cvssBase,
-        cvss_vector: cvssVector,
-        cvss_version: cvssVersion
+        availability_impact: availabilityImpact
       };
       const url = [ENV.endpoints.analyses, analysisId].join('/');
       this.get("ajax").put(url,{ namespace: '/hudson-api', data: JSON.stringify(data), contentType: 'application/json' })
