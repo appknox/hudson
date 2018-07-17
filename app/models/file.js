@@ -28,7 +28,6 @@ const File = DS.Model.extend(BaseModelMixin, {
     }
 
   }).property("dynamicStatus")
-}
-);
+});
 
 export default File;

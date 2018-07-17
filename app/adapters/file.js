@@ -1,8 +1,8 @@
-import DS from 'ember-data';
+import DRFAdapter from './drf';
 import ENV from 'hudson/config/environment';
 import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 
-const FileAdapter = DS.JSONAPIAdapter.extend(DataAdapterMixin, {
+const FileAdapter = DRFAdapter.extend(DataAdapterMixin, {
   authorizer: 'authorizer:hudson',
   host: ENV.host,
   namespace: "hudson-api",
@@ -11,10 +11,6 @@ const FileAdapter = DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   },
   query: function query(store, type, q) {
     let url = `${this.get('host')}/${this.get('namespace')}/projects/${q.projectId}/files`;
-    return this.ajax(url, 'GET');
-  },
-  findRecord: function findRecord(store, type, q) {
-    let url = `${this.get('host')}/${this.get('namespace')}/files/${q}`;
     return this.ajax(url, 'GET');
   }
 });
