@@ -7,7 +7,7 @@
             | #{fileDetails.name} | #{fileDetails.id}
 
         .column.content-right
-          button.is-primary click="openGenerateReportModal"
+          button.is-primary click="generateReport"
             | Generate Report
           a.margin-left href=ireneFilePath target="_blank" class="button is-primary"
             | Visit Dashboard
@@ -17,13 +17,6 @@
           .column
             h3
               | List of Analyses
-          / .column.content-right
-          /   = create-analysis
         .columns
           .column
             = analysis-list fileDetails=fileDetails
-
-= modal-card isActive=showGenerateReportModal title="Generate Report"
-  .card-body
-    .card-wrapper
-      = generate-report fileNumber=fileDetails.id

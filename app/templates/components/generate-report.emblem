@@ -6,7 +6,7 @@
       form.input-form
         p.control
           = input class="form-control input" placeholder="Enter the file number" type="text" value=fileNumber
-        p.control
-          = input class="form-control input" placeholder="Enter the Email IDs" type="email" value=emailIds
+        / p.control
+        /   = input class="form-control input" placeholder="Enter the Email IDs" type="email" value=emailIds
         button.is-primary click="generateReport"
           | Generate Report

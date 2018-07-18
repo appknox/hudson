@@ -183,7 +183,7 @@
                 td
                   = attachment.name
                 td
-                  = attachment.created_on
+                  = attachment.createdOn
                 td
                   = attachment.user
                 td

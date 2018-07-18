@@ -22,5 +22,5 @@ export default DS.Model.extend({
   owasp: DS.hasMany('owasp', {inverse:'analysis'}),
   pcidss: DS.hasMany('pcidss', {inverse:'analysis'}),
   file: DS.belongsTo('file', {inverse: 'analyses'}),
-  attachments: DS.attr()
+  attachments: DS.hasMany('attachment')
 });

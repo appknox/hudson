@@ -9,9 +9,8 @@ const PurgeApiAnalysisComponent = Ember.Component.extend({
       if (Ember.isEmpty(fileId)) {
         return this.get("notify").error("Please enter any File ID");
       }
-      const data =
-        {file_id: fileId};
-      return this.get("ajax").post(ENV.endpoints.purgeAPIAnalyses, { namespace: '/hudson-api', data})
+      const url = [ENV.endpoints.files,fileId, ENV.endpoints.purgeAPIAnalyses].join('/');
+      return this.get("ajax").post(url, { namespace: '/hudson-api'})
       .then((data) => {
         this.get("notify").success("Successfully Purged the Analysis");
         this.set("fileNumber", "");
