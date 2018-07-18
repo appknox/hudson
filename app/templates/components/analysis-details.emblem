@@ -156,7 +156,7 @@
         .column
           form
             p.control.is-fullwidth
-              = file-upload name="photos" accept="image/*" onfileadd=(action "uploadImage") as |queue|
+              = file-upload name="files" accept="*/*" onfileadd=(action "uploadFile") as |queue|
                 a class="button is-primary" disabled=isUploading
                   if isUploading
                     | Uploading...

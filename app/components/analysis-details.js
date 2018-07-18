@@ -1,11 +1,10 @@
 import Ember from 'ember';
 import ENUMS from 'hudson/enums';
-import { task } from 'ember-concurrency';
 import ENV from 'hudson/config/environment';
 
 const { get, set } = Ember;
 
-const isEmpty = inputValue=> Ember.isEmpty(inputValue);
+const isEmpty = inputValue => Ember.isEmpty(inputValue);
 
 const {inject: {service}} = Ember;
 
@@ -34,11 +33,11 @@ const AnalysisDetailsComponent = Ember.Component.extend({
   }).property(),
 
   owasps: (function() {
-    return this.get("store").findAll("owasp")
+    return this.get("store").findAll("owasp");
   }).property(),
 
   pcidsses: (function() {
-    return this.get("store").findAll("pcidss")
+    return this.get("store").findAll("pcidss");
   }).property(),
 
   allFindings: (function() {
@@ -83,11 +82,10 @@ const AnalysisDetailsComponent = Ember.Component.extend({
       this.set("analysisDetails.risk", data.risk);
     }, () => {
       this.get("notify").error("Sorry something went wrong, please try again");
-    })
+    });
   },
 
   actions: {
-
     deleteFile(id) {
       const attachment = this.get("store").peekRecord('attachment', id);
       if(attachment) {
@@ -96,17 +94,20 @@ const AnalysisDetailsComponent = Ember.Component.extend({
       }
     },
 
-    async uploadImage(file) {
+    async uploadFile(file) {
       this.set("isUploading", true);
       const fileName = file.blob.name;
-      const userId = this.get("session.data.authenticated.user_id");
       const data = {
         name: fileName
       };
+
       const analysisId= this.get("analysis.analysisId");
 
       try {
-        const fileData = await this.get("ajax").post(ENV.endpoints.uploadFile,{namespace: 'hudson-api', data});
+        var fileData = await this.get("ajax").post(ENV.endpoints.uploadFile,{namespace: 'hudson-api', data});
+        await file.uploadBinary(fileData.url, {
+          method: 'PUT'
+        });
         const fileDetailsData = {
           file_uuid: fileData.file_uuid,
           file_key: fileData.file_key,
@@ -115,7 +116,6 @@ const AnalysisDetailsComponent = Ember.Component.extend({
           analysis: analysisId,
           content_type: "ANALYSIS"
         };
-
         await this.get("ajax").post(ENV.endpoints.uploadedAttachment,{namespace: 'hudson-api', data: fileDetailsData});
 
         this.set("isUploading", false);
@@ -126,6 +126,7 @@ const AnalysisDetailsComponent = Ember.Component.extend({
       } catch(error) {
         this.set("isUploading", false);
         this.get("notify").error("Sorry something went wrong, please try again");
+        return;
       }
     },
 
@@ -223,7 +224,7 @@ const AnalysisDetailsComponent = Ember.Component.extend({
       const url = [ENV.endpoints.uploadFile, id, ENV.endpoints.downloadAttachment].join('/');
       return this.get("ajax").request(url, {namespace: 'hudson-api'})
       .then((data) => {
-        window.location = data.url;
+        window.open(data.url, '_blank');
       }, (error) => {
         for (error of error.errors) {
           this.get("notify").error(error.detail.error);
