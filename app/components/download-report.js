@@ -9,10 +9,8 @@ const DownloadReportComponent = Ember.Component.extend({
       if (Ember.isEmpty(fileId)) {
         return this.get("notify").error("Please enter the File ID");
       }
-      const data = {
-        file_id: fileId
-      };
-      return this.get("ajax").post(ENV.endpoints.downloadReport, { namespace: '/hudson-api', data})
+      const url = [ENV.endpoints.reports, fileId].join('/');
+      return this.get("ajax").request(ENV.endpoints.url, { namespace: '/hudson-api'})
       .then((data) => {
         window.location = data.url;
       }, (error) => {

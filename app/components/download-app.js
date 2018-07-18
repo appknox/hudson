@@ -9,10 +9,8 @@ const DownloadAppComponent = Ember.Component.extend({
       if (Ember.isEmpty(fileId)) {
         return this.get("notify").error("Please enter the File ID");
       }
-      const data = {
-        file_id: fileId
-      };
-      return this.get("ajax").post(ENV.endpoints.downloadApp, { namespace: '/hudson-api', data})
+      const url = [ENV.endpoints.apps, fileId].join('/');
+      return this.get("ajax").request(url, { namespace: '/hudson-api'})
       .then((data) => {
         window.location = data.url;
       }, (error) => {

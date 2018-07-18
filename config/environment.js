@@ -10,6 +10,7 @@ module.exports = function(environment) {
   var deviceFarmHost = deviceFarmWebsockifyHost.hostname;
   var host = process.env.HUDSON_API_HOST || 'https://api.appknox.com';
   var socketPath = process.env.HUDSON_API_SOCKET_PATH || 'https://socket.appknox.com';
+  var ireneHost = process.env.HUDSON_IRENE_HOST || 'https://secure.appknox.com';
 
   var ENV = {
     rootURL: '/',
@@ -36,6 +37,7 @@ module.exports = function(environment) {
     },
     namespace: "hudson",
     host: host,
+    ireneHost,
     'ember-cli-mirage': {
       enabled: false
     },
@@ -59,6 +61,8 @@ module.exports = function(environment) {
       namespace: 'namespace',
       recover: 'recover',
       reset: 'reset',
+      apps: 'apps',
+      reports: 'reports',
       downloadReport: 'download_report',
       downloadApp: 'download_app',
       uploadedFile: 'uploaded_file',

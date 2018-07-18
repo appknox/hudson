@@ -8,10 +8,8 @@ const FileSearchOverviewComponent = Ember.Component.extend({
   actions: {
     downloadApp() {
       const fileId = this.get("file.id");
-      const data = {
-        file_id: fileId
-      };
-      return this.get("ajax").post(ENV.endpoints.downloadApp, { namespace: '/hudson-api', data})
+      const url = [ENV.endpoints.apps, fileId].join('/');
+      return this.get("ajax").post(url, { namespace: '/hudson-api'})
       .then((data) => {
         window.location = data.url;
       }, (error) => {
