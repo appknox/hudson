@@ -1,6 +1,17 @@
 /* jshint node: true */
 
+var url = require('url');
+
 module.exports = function(environment) {
+  var devicefarmEnv = process.env.HUDSON_DEVICEFARM_URL || "wss://devicefarm.appknox.com";
+  var deviceFarmWebsockifyHost = url.parse(devicefarmEnv);
+  var deviceFarmSsl = deviceFarmWebsockifyHost.protocol == "wss:";
+  var deviceFarmPort = deviceFarmWebsockifyHost.port || (deviceFarmSsl ? 443:80);
+  var deviceFarmHost = deviceFarmWebsockifyHost.hostname;
+  var host = process.env.HUDSON_API_HOST || 'https://api.appknox.com';
+  var socketPath = process.env.HUDSON_API_SOCKET_PATH || 'https://socket.appknox.com';
+  var ireneHost = process.env.HUDSON_IRENE_HOST || 'https://secure.appknox.com';
+
   var ENV = {
     rootURL: '/',
     locationType: 'auto',
@@ -25,7 +36,8 @@ module.exports = function(environment) {
       }
     },
     namespace: "hudson",
-    host: "https://api.appknox.com",
+    host: host,
+    ireneHost,
     'ember-cli-mirage': {
       enabled: false
     },
@@ -48,8 +60,25 @@ module.exports = function(environment) {
       subscription: 'subscriptions',
       namespace: 'namespace',
       recover: 'recover',
-      reset: 'reset'
-
+      reset: 'reset',
+      apps: 'apps',
+      files: 'files',
+      reports: 'reports',
+      downloadReport: 'download_report',
+      downloadApp: 'download_app',
+      uploadedFile: 'uploaded_file',
+      signedUrl: 'signed_url',
+      purgeAPIAnalyses: 'purge_api',
+      dynamicScan: 'dynamic_scan',
+      apiScan: 'api_scan',
+      startApiScan: 'start_api_scan',
+      generateReport: 'generate_report',
+      downloadAttachment: 'download',
+      owasps: 'owasps',
+      analyses: 'analyses',
+      uploadFile: 'attachments',
+      uploadedAttachment: 'attachments/upload_finished',
+      deleteAttachment: 'delete_attachment',
     }
   };
 

@@ -1,0 +1,11 @@
+td
+  = file.id
+td
+  = file.project.platform
+td
+  = file.project.owner.username
+td
+  = file.name
+td
+  div.pointed-cursor click="stopAPIScan"
+    = fa-icon "fa-stop-circle"

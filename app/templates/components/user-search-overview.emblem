@@ -1,0 +1,5 @@
+td
+  = user.username
+td.table-button
+  = link-to 'authenticated.security.projects' user.username class="mp-all-scans is-primary" tagName="button"
+    | View Projects

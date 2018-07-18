@@ -1,0 +1,11 @@
+.columns
+  .column
+    .box.margin-top10
+      .margin-auto
+        h3
+          | Search & Generate Report
+        form.input-form
+          p.control
+            = user-list
+          button.is-primary click="searchUser"
+            | Search

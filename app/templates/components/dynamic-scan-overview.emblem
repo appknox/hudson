@@ -1,0 +1,13 @@
+td
+  = file.id
+td
+  = file.project.platform
+td
+  = file.project.owner.username
+td
+  = file.name
+td
+  = file.dynamicDate
+td
+  div.pointed-cursor click="stopDynamicScan"
+    = fa-icon "fa-stop-circle"

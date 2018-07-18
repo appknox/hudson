@@ -1,0 +1,16 @@
+td
+  = device.serialNumber
+td
+  = device.isConnected
+td
+  = device.isAvailable
+td
+  = device.isTablet
+td
+  = device.appName
+td
+  = device.packageName
+td
+  = device.platform
+td
+  = device.platformVersion

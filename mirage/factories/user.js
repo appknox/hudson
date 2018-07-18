@@ -1,4 +1,5 @@
 import { Factory, faker } from 'ember-cli-mirage';
+import ENUMS from 'hudson/enums';
 
 export default Factory.extend({
   id (i) {
@@ -14,5 +15,12 @@ export default Factory.extend({
   projectCount: faker.random.number,
   dateJoined: faker.date.past,
   isActive: faker.random.boolean,
-  anyNamespace: faker.random.boolean
+  anyNamespace: faker.random.boolean,
+
+  role(){
+    return faker.random.arrayElement(ENUMS.USER_ROLE.VALUES);
+  },
+  department(){
+    return faker.random.arrayElement(ENUMS.USER_DEPARTMENT.VALUES);
+  },
 });

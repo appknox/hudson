@@ -1,0 +1,7 @@
+td
+  = project.id
+td
+  = project.package_name
+td.table-button
+  = link-to 'authenticated.security.files' project.id class="mp-all-scans is-primary" tagName="button"
+    | View Files

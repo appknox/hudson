@@ -1,0 +1,22 @@
+.columns
+  .column
+    .box.margin-top10
+      .margin-auto
+        h3
+          | Active Dynamic Scans
+        table.dynamic-scan-table
+          tr
+            th
+              | File ID
+            th
+              | Platform
+            th
+              | Username
+            th
+              | Package Name
+            th
+              | Duration
+            th
+              | Stop Scan
+          each files as |file|
+            = dynamic-scan-overview file=file

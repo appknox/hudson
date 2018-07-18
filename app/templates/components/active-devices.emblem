@@ -1,0 +1,26 @@
+.columns
+  .column
+    .box.margin-top10
+      .margin-auto
+        h3
+          | Active Devices
+        table.dynamic-scan-table
+          tr
+            th
+              | Serial Number
+            th
+              | Connected?
+            th
+              | Available?
+            th
+              | Tablet?
+            th
+              | App Name
+            th
+              | Package Name
+            th
+              | Platform
+            th
+              | Platform Version
+          each devices as |device|
+            = active-devices-overview device=device

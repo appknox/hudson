@@ -1,0 +1,26 @@
+.tabs.is-medium.is-boxed
+  ul
+    li class=isSearchUpdateAnalysis:is-active
+      a click="displaySearchUpdateAnalysis"
+        | Search &amp; Update Analysis
+    li class=isPurgeAPIAnalysis:is-active
+      a click="displayPurgeAPIAnalysis"
+        | Purge API Analysis
+    li class=isUpdateAnalysis:is-active
+      a click="displayUpdateAnalysis"
+        | Update Analysis with File ID
+    li class=isAddAnalysis:is-active
+      a click="displayAddAnalysis"
+        | Add Analysis
+
+if isSearchUpdateAnalysis
+  = search-update-analysis
+
+else if isPurgeAPIAnalysis
+  = purge-api-analysis
+
+else if isUpdateAnalysis
+  = update-analysis
+
+else
+  = add-analysis

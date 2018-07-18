@@ -1,0 +1,11 @@
+.columns
+  .column
+    .box.margin-top10
+      .margin-auto
+        h3
+          | Search & Upload App
+        form.input-form
+          p.control
+            = input class="form-control input" id="user-id" placeholder="Search for a user" type="text" value=userId
+          button.is-primary click="searchUser"
+            | Search

@@ -13,6 +13,7 @@ export default function() {
    this.get('/files', 'file');
    this.get('/invoices', 'invoice');
    this.get('/invoices/:id', 'invoice');
+   this.get('/devices', 'device');
 
    this.get('/stats/1', 'invoice');
 
@@ -31,6 +32,23 @@ export default function() {
    this.post('/users', () => {
     return;
    });
+
+   this.post('/api_scan', () => {
+    return;
+   });
+
+   this.post('/dynamic_scan', () => {
+    return;
+   });
+
+   this.post('/start_api_scan', () => {
+    return;
+   });
+
+   this.post('/generate_report', () => {
+    return;
+   });
+
    this.post('/subscriptions', 'subscription');
 
    this.patch('/user/:id', 'user');

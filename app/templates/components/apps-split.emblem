@@ -1,0 +1,57 @@
+.tabs.is-medium.is-boxed
+  ul
+    li class=isDownloadApp:is-active
+      a click="displayDownloadApp"
+        | Download App
+    li class=isSearchDownloadApp:is-active
+      a click="displaySearchDownloadApp"
+        | Search &amp; Download App
+    li class=isUploadApp:is-active
+      a click="displayUploadApp"
+        | Upload App
+    li class=isSearchUploadApp:is-active
+      a click="displaySearchUploadApp"
+        | Search &amp; Upload App
+    li class=isDeleteApp:is-active
+      a click="displayDeleteApp"
+        | Delete App
+    li class=isDeleteProject:is-active
+      a click="displayDeleteProject"
+        | Delete Project
+
+if isDownloadApp
+  = download-app
+
+else if isSearchDownloadApp
+  = search-download-app
+
+else if isUploadApp
+  .columns
+    .column
+      .box.margin-top10
+        .margin-auto
+          h3
+            | Upload App
+          form.input-form
+            p.control
+              = input class="form-control input" id="user-id" placeholder="Enter the User ID" type="text" value=userId
+            p.control
+              label.button.is-primary
+                = upload-app delegate=this
+                = fa-icon "upload"
+                | &nbsp;
+                if isUploading
+                  | Uploading :
+                  = progress
+                  | &nbsp; %
+                else
+                  | Upload
+
+else if isSearchUploadApp
+  = search-upload-app
+
+else if isDeleteApp
+  = delete-app
+
+else
+  = delete-project

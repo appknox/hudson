@@ -1,0 +1,21 @@
+.tabs.is-medium.is-boxed
+  ul
+    li class=dynamicScanClass
+      a click="displayDynamicScan"
+        | Active Dynamic Scans
+    li class=apiScanClass
+      a click="displayAPIScan"
+        | Active API Scans
+    li class=startAPIScanclass
+      a click="displayStartAPIScans"
+        | Start API Scans
+
+if isDynamicScan
+  = dynamic-scans files=files
+  = active-devices
+
+else if isAPIScan
+  = api-scans files=files
+
+else
+  = start-api-scan

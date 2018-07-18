@@ -1,0 +1,8 @@
+button.is-primary click="openAnalysisModal"
+  | Add Analysis
+
+= modal-card isActive=showAnalysisModal title="Add Analysis"
+  .card-body
+    .card-wrapper
+      button.margin-top10 click="addAnalysis"
+       | Add Analysis

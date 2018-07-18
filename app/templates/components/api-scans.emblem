@@ -1,0 +1,20 @@
+.columns
+  .column
+    .box.margin-top10
+      .margin-auto
+        h3
+          | Active API Scans
+        table.dynamic-scan-table
+          tr
+            th
+              | File ID
+            th
+              | Platform
+            th
+              | Username
+            th
+              | Package Name
+            th
+              | Stop Scan
+          each files as |file|
+            = api-scan-overview file=file
