@@ -1,3 +1,4 @@
+/* jshint ignore:start */
 /*
  * decaffeinate suggestions:
  * DS101: Remove unnecessary use of Array.from
@@ -61,3 +62,4 @@ const CreateCouponComponent = Ember.Component.extend({
 });
 
 export default CreateCouponComponent;
+/* jshint ignore:end */

@@ -6,10 +6,9 @@
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import ENV from 'hudson/config/environment';
+import ENUMS from 'hudson/enums';
 
-const { location } = window;
-
-const {inject: {service}, isEmpty, RSVP} = Ember;
+const {inject: {service}} = Ember;
 
 const AuthenticatedRoute = Ember.Route.extend(AuthenticatedRouteMixin, {
 
@@ -44,11 +43,11 @@ const AuthenticatedRoute = Ember.Route.extend(AuthenticatedRouteMixin, {
 
       logout() {
           localStorage.clear();
-          return location.reload();
+          return window.location.reload();
         },
 
       reload() {
-        return location.reload();
+        return window.location.reload();
       },
 
       counter(data) {

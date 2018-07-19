@@ -1,3 +1,4 @@
+/* jshint ignore:start */
 /*
  * decaffeinate suggestions:
  * DS101: Remove unnecessary use of Array.from
@@ -80,3 +81,5 @@ export default CreateUserComponent;
 function __guard__(value, transform) {
   return (typeof value !== 'undefined' && value !== null) ? transform(value) : undefined;
 }
+
+/* jshint ignore:end */

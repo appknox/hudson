@@ -6,6 +6,7 @@
 import Ember from 'ember';
 import Uploader from 'hudson/utils/uploader';
 import ENV from 'hudson/config/environment';
+import EmberUploader from 'ember-uploader';
 
 const UploadAppComponent = EmberUploader.FileField.extend({
 

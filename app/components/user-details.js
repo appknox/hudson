@@ -1,3 +1,4 @@
+/* jshint ignore:start */
 /*
  * decaffeinate suggestions:
  * DS101: Remove unnecessary use of Array.from
@@ -457,3 +458,4 @@ const UserDetailsComponent = Ember.Component.extend({
 
 
 export default UserDetailsComponent;
+/* jshint ignore:end */

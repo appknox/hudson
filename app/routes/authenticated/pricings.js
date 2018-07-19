@@ -7,7 +7,7 @@ import Ember from 'ember';
 
 const AuthenticatedPricingsRoute = Ember.Route.extend({
 
-  model(params){
+  model(){
     return this.get('store').findAll('pricing');
   }
 });

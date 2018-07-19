@@ -1,3 +1,4 @@
+/* jshint ignore:start */
 import Ember from 'ember';
 import ENUMS from 'hudson/enums';
 import ENV from 'hudson/config/environment';
@@ -285,3 +286,5 @@ const AnalysisDetailsComponent = Ember.Component.extend({
 
 
 export default AnalysisDetailsComponent;
+
+/* jshint ignore:end */

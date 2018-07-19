@@ -10,14 +10,14 @@ const DownloadReportComponent = Ember.Component.extend({
         return this.get("notify").error("Please enter the File ID");
       }
       const url = [ENV.endpoints.reports, fileId].join('/');
-      return this.get("ajax").request(ENV.endpoints.url, { namespace: '/hudson-api'})
+      return this.get("ajax").request(url, { namespace: '/hudson-api'})
       .then((data) => {
         window.location = data.url;
       }, (error) => {
         for (error of error.errors) {
           this.get("notify").error(error.detail.error);
         }
-      })
+      });
     }
   }
 });

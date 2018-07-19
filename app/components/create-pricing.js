@@ -1,3 +1,4 @@
+/* jshint ignore:start */
 /*
  * decaffeinate suggestions:
  * DS101: Remove unnecessary use of Array.from
@@ -60,3 +61,4 @@ const CreatePricingComponent = Ember.Component.extend({
 });
 
 export default CreatePricingComponent;
+/* jshint ignore:end */

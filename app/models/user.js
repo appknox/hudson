@@ -5,6 +5,7 @@
  */
 import DS from 'ember-data';
 import ENUMS from 'hudson/enums';
+import Ember from 'ember';
 
 const User = DS.Model.extend({
   uuid: DS.attr('string'),

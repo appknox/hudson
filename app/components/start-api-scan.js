@@ -18,15 +18,15 @@ const StartApiScanComponent = Ember.Component.extend({
         {file_id: fileId};
       const that = this;
       return this.get("ajax").post(ENV.endpoints.startApiScan, {data})
-      .then(data => that.get("notify").success("Started API Scan")).catch(error =>
-        (() => {
-          const result = [];
-          for (error of Array.from(error.errors)) {
-            result.push(that.get("notify").error(error.detail != null ? error.detail.message : undefined));
-          }
-          return result;
-        })()
-      );
+      .then(() =>  {
+        that.get("notify").success("Started API Scan");
+      }, (error) => {
+        const result = [];
+        for (error of Array.from(error.errors)) {
+          result.push(that.get("notify").error(error.detail != null ? error.detail.message : undefined));
+        }
+        return result;
+      });
     }
   }
 });

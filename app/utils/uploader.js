@@ -10,7 +10,7 @@ import Ember from 'ember';
 import ENV from 'hudson/config/environment';
 import EmberUploader from 'ember-uploader';
 
-const {inject: {service}, isEmpty, RSVP} = Ember;
+const {inject: {service}} = Ember;
 
 
 const Uploader = EmberUploader.Uploader.extend({

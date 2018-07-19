@@ -7,7 +7,7 @@ import Ember from 'ember';
 
 const AuthenticatedUsersRoute = Ember.Route.extend({
 
-  model(params){
+  model(){
     return this.get('store').findAll('user');
   }
 });

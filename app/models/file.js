@@ -1,8 +1,4 @@
-/*
- * decaffeinate suggestions:
- * DS102: Remove unnecessary code created because of implicit returns
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
+/* jshint ignore:start */
 import DS from 'ember-data';
 import ENUMS from 'hudson/enums';
 import BaseModelMixin from 'hudson/mixins/base-model';
@@ -26,8 +22,9 @@ const File = DS.Model.extend(BaseModelMixin, {
       case ENUMS.DYNAMIC_STATUS.SHUTTING_DOWN: return "Shutting Down";
       default: return "Unknown Status";
     }
-
   }).property("dynamicStatus")
 });
 
 export default File;
+
+/* jshint ignore:end */

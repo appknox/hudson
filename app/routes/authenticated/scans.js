@@ -7,7 +7,7 @@ import Ember from 'ember';
 
 const AuthenticatedScansRoute = Ember.Route.extend({
 
-  model(params) {
+  model() {
     return this.get('store').findAll('file');
   }
 });

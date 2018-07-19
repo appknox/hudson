@@ -16,7 +16,7 @@ const ApiScanOverviewComponent = Ember.Component.extend({
         .then(function(){
           that.get("notify").success("API Scan Stopped Successfully");
         })
-        .catch(function() {
+        .catch(function(error) {
           that.get("notify").error(error.payload.error);
         });
       }
