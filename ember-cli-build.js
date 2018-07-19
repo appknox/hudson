@@ -9,6 +9,9 @@ module.exports = function(defaults) {
       includePaths: [
         'bower_components/bohemia/'
       ]
+    },
+    'ember-cli-babel': {
+     includePolyfill: true
     }
   });
 
